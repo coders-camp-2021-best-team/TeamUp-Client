@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "aaron-bond.better-comments",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "ms-vsliveshare.vsliveshare",
+        "quicktype.quicktype"
+    ]
+}
