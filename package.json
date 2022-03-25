@@ -9,7 +9,8 @@
         "start": "react-scripts start",
         "test": "react-scripts test --passWithNoTests",
         "format": "prettier --ignore-unknown --ignore-path .gitignore --write .",
-        "lint": "eslint src/"
+        "lint": "eslint src/",
+        "clean": "rimraf build/ node_modules/ .yarn/cache/ .yarn/install-state.gz"
     },
     "repository": {
         "type": "git",
