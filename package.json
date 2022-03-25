@@ -53,6 +53,5 @@
     "engines": {
         "yarn": ">= 1.19.1",
         "npm": "use-yarn"
-    },
-    "packageManager": "yarn@3.2.0"
+    }
 }
