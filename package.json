@@ -9,7 +9,7 @@
         "start": "react-scripts start",
         "test": "react-scripts test --passWithNoTests",
         "format": "prettier --ignore-unknown --ignore-path .gitignore --write .",
-        "lint": "eslint --ext .js,.ts src/"
+        "lint": "eslint src/"
     },
     "repository": {
         "type": "git",
@@ -59,7 +59,6 @@
     },
     "engines": {
         "node": ">=14",
-        "yarn": ">=3.2.0",
         "npm": "use-yarn"
     },
     "packageManager": "yarn@3.2.0"
