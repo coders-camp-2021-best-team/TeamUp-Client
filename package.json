@@ -57,5 +57,10 @@
             "last 1 safari version"
         ]
     },
+    "engines": {
+        "node": ">=14",
+        "yarn": ">=3.2.0",
+        "npm": "use-yarn"
+    },
     "packageManager": "yarn@3.2.0"
 }
