@@ -7,7 +7,7 @@
         "prebuild": "rimraf build/",
         "build": "react-scripts build",
         "start": "react-scripts start",
-        "test": "react-scripts test",
+        "test": "react-scripts test --passWithNoTests",
         "format": "prettier --ignore-unknown --ignore-path .gitignore --write .",
         "lint": "eslint --ext .js,.ts src/"
     },
