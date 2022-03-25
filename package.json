@@ -10,7 +10,7 @@
         "test": "react-scripts test --passWithNoTests",
         "format": "prettier --ignore-unknown --ignore-path .gitignore --write .",
         "lint": "eslint src/",
-        "clean": "rimraf build/ node_modules/ .yarn/cache/ .yarn/install-state.gz"
+        "clean": "rimraf build/ node_modules/ && yarn cache clean"
     },
     "repository": {
         "type": "git",
