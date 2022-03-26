@@ -1,0 +1,68 @@
+{
+    "name": "teamup-client",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "scripts": {
+        "prepare": "husky install",
+        "prebuild": "rimraf build/",
+        "build": "react-scripts build",
+        "start": "react-scripts start",
+        "test": "react-scripts test --passWithNoTests",
+        "format": "prettier --ignore-unknown --ignore-path .eslintignore --write .",
+        "lint": "eslint src/",
+        "clean": "rimraf build/ node_modules/ && yarn cache clean"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/coders-camp-2021-best-team/TeamUp-Client.git"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.8.2",
+        "@emotion/styled": "^11.8.1",
+        "@mui/icons-material": "^5.5.1",
+        "@mui/material": "^5.5.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-hook-form": "^7.28.1",
+        "react-query": "^3.34.17",
+        "rimraf": "^3.0.2",
+        "yup": "^0.32.11"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^12.0.0",
+        "@testing-library/user-event": "^13.2.1",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^16.7.13",
+        "@types/react": "^17.0.20",
+        "@types/react-dom": "^17.0.9",
+        "eslint": "^8.11.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.7",
+        "prettier": "^2.6.1",
+        "react-scripts": "5.0.0",
+        "typescript": "^4.4.2"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "engines": {
+        "node": ">=14",
+        "yarn": ">= 1.19.1",
+        "npm": "use-yarn"
+    },
+    "packageManager": "yarn@3.2.0"
+}
