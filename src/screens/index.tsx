@@ -1,6 +1,6 @@
 export * from './Base';
 export * from './Chat';
-export * from './ConfEmail';
+export * from './EmailConfirmation';
 export * from './Error';
 export * from './Feed';
 export * from './Home';

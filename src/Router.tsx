@@ -5,11 +5,11 @@ import { ROUTES } from './routes/Routes';
 import {
     BaseScreen,
     Chat,
-    ConfEmail,
-    Error,
+    EmailConfirmation,
     Feed,
     Home,
     Login,
+    NotFound,
     Post,
     Profile,
     Register,
@@ -22,7 +22,7 @@ export const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path={ROUTES.HOME} element={<Home />} />
-                <Route path={ROUTES.NOT_FOUND} element={<Error />} />
+                <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
                 <Route
                     path={ROUTES.ERROR}
                     element={<Navigate to={ROUTES.NOT_FOUND} replace />}
@@ -35,7 +35,7 @@ export const Router = () => {
                 />
                 <Route
                     path={ROUTES.CONFIRMATION_EMAIL}
-                    element={<ConfEmail />}
+                    element={<EmailConfirmation />}
                 />
                 <Route
                     element={
