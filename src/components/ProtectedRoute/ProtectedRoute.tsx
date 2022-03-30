@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const ProtectedRoute = ({ children }: Props): JSX.Element => {
-    const user = true;
+    const user = true; //TODO connect with BE
     if (user) {
         return children;
     }
