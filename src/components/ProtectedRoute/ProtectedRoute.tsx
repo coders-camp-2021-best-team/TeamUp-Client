@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const ProtectedRoute = ({ children }: Props) => {
-    const user = true; //TODO connect with BE
+    const user = true; // TODO - Add real auth state - https://github.com/coders-camp-2021-best-team/TeamUp-Client/issues/10
     if (user) {
         return children;
     }
