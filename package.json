@@ -9,7 +9,7 @@
         "start": "react-scripts start",
         "test": "react-scripts test --passWithNoTests",
         "format": "prettier --ignore-unknown --ignore-path .eslintignore --write .",
-        "lint": "eslint src/",
+        "lint": "eslint src/ --max-warnings 0",
         "clean": "rimraf build/ node_modules/ && yarn cache clean"
     },
     "repository": {
