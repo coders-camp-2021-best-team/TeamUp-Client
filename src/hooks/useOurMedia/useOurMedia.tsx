@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@mui/material';
+import { useMemo } from 'react';
 
 import { theme } from './theme';
 
@@ -16,12 +17,13 @@ export const useOurMedia = (
     breakpoint: Breakpoints = 'phone',
     minOrMax: MinOrMax = 'max'
 ) => {
-    let mediaQuery: string;
-    if (minOrMax === 'min') {
-        mediaQuery = theme.breakpoints.up(breakpoint);
-    } else {
-        mediaQuery = theme.breakpoints.down(breakpoint);
-    }
+    const mediaQuery = useMemo(() => {
+        if (minOrMax === 'min') {
+            return theme.breakpoints.up(breakpoint);
+        } else {
+            return theme.breakpoints.down(breakpoint);
+        }
+    }, [breakpoint, minOrMax]);
     const matches = useMediaQuery(mediaQuery);
 
     return matches;
