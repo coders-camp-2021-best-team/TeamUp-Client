@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@mui/material';
 import { useMemo } from 'react';
 
-import { theme } from './theme';
+import { theme } from '../../config/theme';
 
 type Breakpoints =
     | 'phone'
