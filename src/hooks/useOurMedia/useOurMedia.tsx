@@ -18,9 +18,9 @@ export const useOurMedia = (
 ) => {
     let mediaQuery: string;
     if (minOrMax === 'min') {
-        mediaQuery = theme.breakpoints.up(`${breakpoint}`);
+        mediaQuery = theme.breakpoints.up(breakpoint);
     } else {
-        mediaQuery = theme.breakpoints.down(`${breakpoint}`);
+        mediaQuery = theme.breakpoints.down(breakpoint);
     }
     const matches = useMediaQuery(mediaQuery);
 
