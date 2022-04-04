@@ -1,11 +1,9 @@
-import { NavLink } from 'react-router-dom';
-
-import { ROUTES } from '../../routes/Routes';
+import { Header } from '../../components';
 
 export const Home = () => {
     return (
         <>
-            <NavLink to={ROUTES.FEED}>FEED</NavLink>
+            <Header />
             <div>Home</div>
         </>
     );

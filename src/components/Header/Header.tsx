@@ -2,6 +2,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
@@ -59,26 +60,70 @@ export const Header = () => {
                             }}
                         >
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={ROUTES.HOME}>Home</NavLink>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={ROUTES.HOME}
+                                >
+                                    Home
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={`${ROUTES.PROFILE}/${id}`}>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={`${ROUTES.PROFILE}/${id}`}
+                                >
                                     Profile
-                                </NavLink>
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={ROUTES.FEED}>Feed</NavLink>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={ROUTES.FEED}
+                                >
+                                    Feed
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={`${ROUTES.CHAT}/${id}`}>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={`${ROUTES.CHAT}/${id}`}
+                                >
                                     Chat
-                                </NavLink>
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={ROUTES.POST}>Post</NavLink>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={ROUTES.POST}
+                                >
+                                    Post
+                                </Link>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>
-                                <NavLink to={ROUTES.SEARCH}>Search</NavLink>
+                                <Link
+                                    underline='hover'
+                                    variant='body1'
+                                    color={'#000'}
+                                    component={NavLink}
+                                    to={ROUTES.SEARCH}
+                                >
+                                    Search
+                                </Link>
                             </MenuItem>
                         </Menu>
                     </div>
@@ -87,39 +132,3 @@ export const Header = () => {
         </Box>
     );
 };
-// <ul>
-//     <li>
-//         <NavLink to={ROUTES.LOGIN}>Login</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.REGISTER}>Register</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.HOME}>Home</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.FEED}>Feed</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={`${ROUTES.PROFILE}/${id}`}>Profile</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={`${ROUTES.CHAT}/${id}`}>Chat</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.SEARCH}>Search</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.POST}>Post</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.RESET_PASSWORD}>Reset Password</NavLink>
-//     </li>
-//     <li>
-//         <NavLink to={ROUTES.CONFIRMATION_EMAIL}>
-//             Confirmation Email
-//         </NavLink>
-//     </li>
-// </ul>
-//     );
-// };
