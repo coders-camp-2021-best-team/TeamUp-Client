@@ -41,7 +41,7 @@ export const Header = () => {
                             edge='start'
                             color='inherit'
                             aria-label='menu'
-                            sx={{ mr: 2 }}
+                            sx={{ mr: 2, background: 'rgba(0,0,0,0.20)' }}
                             id='basic-button'
                             aria-controls={open ? 'basic-menu' : undefined}
                             aria-haspopup='true'
