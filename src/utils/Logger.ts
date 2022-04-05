@@ -2,20 +2,23 @@
 export class Logger {
     static instance: Logger;
 
-    static getInstance() {
-        if (!this.instance) {
-            this.instance = new Logger();
+    static info(tag: string, message: string, context?: any) {
+        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
+            return;
         }
-        return this.instance;
-    }
-    info(tag: string, message: string, context?: any) {
         console.log(`[${tag}] : ${message}`, { context });
     }
 
-    debug(tag: string, message: string, context?: any) {
+    static debug(tag: string, message: string, context?: any) {
+        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
+            return;
+        }
         console.debug(`[${tag}] : ${message}`, { context });
     }
-    error(tag: string, message: string, context?: any) {
+    static error(tag: string, message: string, context?: any) {
+        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
+            return;
+        }
         console.error(`[${tag}] : ${message}`, { context });
     }
 }
