@@ -19,8 +19,6 @@ export const request = {
     delete: <T>(url: string) => instance.delete<T>(url).then(response)
 };
 
-const agent = {
+export const agent = {
     MainPage
 };
-
-export default agent;
