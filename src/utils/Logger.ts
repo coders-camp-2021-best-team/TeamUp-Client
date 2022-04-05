@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export class Logger {
-    static instance: Logger;
-
     static info(tag: string, message: string, context?: any) {
         if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
             return;
