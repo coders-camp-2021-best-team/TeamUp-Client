@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { AuthService, TestService } from '../Api/client/AuthService';
+
 export const instance = axios.create({
     baseURL: 'http://localhost:5000',
     headers: {
@@ -18,7 +20,7 @@ export const request = {
         instance.put<T>(url, body).then(response),
     delete: <T>(url: string) => instance.delete<T>(url).then(response)
 };
-
 export const agent = {
-    MainPage
+    AuthService,
+    TestService
 };
