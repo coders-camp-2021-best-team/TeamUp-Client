@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../routes/Routes';
 
-interface NAV_ITEMS {
+type NAV_ITEM = {
     src: string;
     label: string;
     to: string;
-}
+};
 
 const NAV_ITEMS = [
     {
@@ -52,19 +52,20 @@ export const Navigation = () => {
     };
 
     return (
-        <MenuItem onClick={handleClose}>
-            {NAV_ITEMS.map((navItem: NAV_ITEMS) => (
-                <Link
-                    underline='hover'
-                    variant='body1'
-                    color={'#000'}
-                    component={NavLink}
-                    to={navItem.to}
-                    key={navItem.src}
-                >
-                    {navItem.label}
-                </Link>
+        <>
+            {NAV_ITEMS.map((navItem: NAV_ITEM) => (
+                <MenuItem key={navItem.src} onClick={handleClose}>
+                    <Link
+                        underline='hover'
+                        variant='body1'
+                        color={'#000'}
+                        component={NavLink}
+                        to={navItem.to}
+                    >
+                        {navItem.label}
+                    </Link>
+                </MenuItem>
             ))}
-        </MenuItem>
+        </>
     );
 };
