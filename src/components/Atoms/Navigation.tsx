@@ -1,6 +1,5 @@
 import { MenuItem } from '@mui/material';
 import Link from '@mui/material/Link';
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../routes/Routes';
@@ -20,7 +19,7 @@ const NAV_ITEMS = [
     {
         src: 'profile',
         label: 'Profile',
-        to: ROUTES.PROFILE // (id: string) => `${ROUTES.PROFILE}/${id}`
+        to: ROUTES.PROFILE
     },
     {
         src: 'feed',
@@ -30,7 +29,7 @@ const NAV_ITEMS = [
     {
         src: 'chat',
         label: 'Chat',
-        to: ROUTES.CHAT // (id: string) => `${ROUTES.CHAT}/${id}`
+        to: ROUTES.CHAT
     },
     {
         src: 'post',
@@ -45,16 +44,10 @@ const NAV_ITEMS = [
 ];
 
 export const Navigation = () => {
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
         <>
             {NAV_ITEMS.map((navItem: NAV_ITEM) => (
-                <MenuItem key={navItem.src} onClick={handleClose}>
+                <MenuItem key={navItem.src}>
                     <Link
                         underline='hover'
                         variant='body1'
