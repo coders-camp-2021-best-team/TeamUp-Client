@@ -1,7 +1,12 @@
+import { ThemeProvider } from '@emotion/react';
+
+import { theme } from './config/theme';
+import { Router } from './Router';
+
 export const App = () => {
     return (
-        <div className='app'>
-            <h1>Hello, world!</h1>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Router />
+        </ThemeProvider>
     );
 };
