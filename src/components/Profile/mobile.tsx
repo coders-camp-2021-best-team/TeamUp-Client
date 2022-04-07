@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
+import { Description } from './description';
+
 export const MobileProfile = () => {
-    const content = [1, 2, 3, 4, 5, 6];
     return (
         <>
             <Box
@@ -9,58 +10,15 @@ export const MobileProfile = () => {
                 alt='Profile Picture'
                 src='https://source.unsplash.com/random'
                 width='100%'
-                maxHeight='30%'
+                height='40vh'
                 sx={{
-                    borderRadius: '8px'
+                    borderRadius: '6px'
                 }}
             />
-            <Typography
-                variant='h5'
-                sx={{ flexGrow: 1 }}
-                margin='25px'
-                color='#eee'
-            >
+            <Typography variant='h5' sx={{ flexGrow: 1 }} margin='2vh 5.5vw'>
                 Jan Kowalski, 22
             </Typography>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundColor: 'primary.light',
-                    paddingTop: '10px',
-                    paddingBottom: '50px',
-                    margin: '20px',
-                    borderRadius: '8px'
-                }}
-            >
-                <Typography margin='10px'>About</Typography>
-                <Typography margin='10px'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolore maiores sequi, qui, ab ducimus hic ullam incidunt
-                    laudantium beatae consequatur in quas doloribus delectus
-                    tenetur fugit, consectetur officiis dolorum dignissimos.
-                </Typography>
-            </Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    marginLeft: '15px'
-                }}
-            >
-                {content.map((box) => (
-                    <Box
-                        sx={{
-                            backgroundColor: 'primary.light',
-                            borderRadius: '14px',
-                            padding: '5px',
-                            margin: '5px 5px'
-                        }}
-                    >
-                        <Typography variant='body2'>Chip content</Typography>
-                    </Box>
-                ))}
-            </Box>
+            <Description />
         </>
     );
 };
