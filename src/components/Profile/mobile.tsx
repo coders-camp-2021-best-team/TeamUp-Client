@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export const MobileProfile = () => {
     const content = [1, 2, 3, 4, 5, 6];
@@ -24,35 +24,43 @@ export const MobileProfile = () => {
             </Typography>
             <Box
                 sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
                     backgroundColor: 'primary.light',
                     paddingTop: '10px',
-                    paddingBottom: '100px',
+                    paddingBottom: '50px',
                     margin: '20px',
                     borderRadius: '8px'
                 }}
             >
                 <Typography margin='10px'>About</Typography>
                 <Typography margin='10px'>
-                    I watched the storm, so beautiful yet terrific.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dolore maiores sequi, qui, ab ducimus hic ullam incidunt
+                    laudantium beatae consequatur in quas doloribus delectus
+                    tenetur fugit, consectetur officiis dolorum dignissimos.
                 </Typography>
             </Box>
-            <Grid container spacing={2} width='90%' marginLeft='5px'>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    marginLeft: '15px'
+                }}
+            >
                 {content.map((box) => (
-                    <Grid item key={box} xs={12} md={6}>
-                        <Box
-                            sx={{
-                                backgroundColor: 'primary.light',
-                                borderRadius: '14px',
-                                padding: '5px'
-                            }}
-                        >
-                            <Typography variant='body2'>
-                                Chip content
-                            </Typography>
-                        </Box>
-                    </Grid>
+                    <Box
+                        sx={{
+                            backgroundColor: 'primary.light',
+                            borderRadius: '14px',
+                            padding: '5px',
+                            margin: '5px 5px'
+                        }}
+                    >
+                        <Typography variant='body2'>Chip content</Typography>
+                    </Box>
                 ))}
-            </Grid>
+            </Box>
         </>
     );
 };
