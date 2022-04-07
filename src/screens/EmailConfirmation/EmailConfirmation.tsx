@@ -18,16 +18,21 @@ export const EmailConfirmation = () => {
                 sx={{
                     m: 1,
                     bgcolor: 'primary.main',
-                    width: '50px',
-                    height: '50px'
+                    width: '70px',
+                    height: '70px'
                 }}
             >
                 <CheckRoundedIcon
-                    sx={{ fontSize: '36px', color: 'text.primary' }}
+                    sx={{ fontSize: '48px', color: 'text.primary' }}
                 />
             </Avatar>
-            <Typography component='h1' variant='h6' color='background.paper'>
-                Congrats, successfully confirmation mail
+            <Typography
+                component='h1'
+                variant='h4'
+                color='background.paper'
+                padding='30px 20px'
+            >
+                Congrats, e-mail was confirmed successfully!
             </Typography>
         </Box>
     );
