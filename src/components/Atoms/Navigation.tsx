@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../routes/Routes';
 
-type NAV_ITEM = {
+type navItem = {
     src: string;
     label: string;
     to: string;
@@ -46,7 +46,7 @@ const NAV_ITEMS = [
 export const Navigation = () => {
     return (
         <>
-            {NAV_ITEMS.map((navItem: NAV_ITEM) => (
+            {NAV_ITEMS.map((navItem: navItem) => (
                 <MenuItem key={navItem.src}>
                     <Link
                         underline='hover'
