@@ -27,6 +27,7 @@
         "react-hook-form": "^7.28.1",
         "react-query": "^3.34.17",
         "react-router-dom": "^6.2.2",
+        "react-toastify": "^8.2.0",
         "rimraf": "^3.0.2",
         "yup": "^0.32.11"
     },

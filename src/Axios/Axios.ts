@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { AuthService, TestService } from '../Api/client/AuthService';
+import { AuthService } from '../Api/client/AuthService';
 
 export const instance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
@@ -21,6 +21,5 @@ export const request = {
     delete: <T>(url: string) => instance.delete<T>(url).then(response)
 };
 export const agent = {
-    AuthService,
-    TestService
+    AuthService
 };
