@@ -23,12 +23,12 @@ export const DesktopProfile = () => {
                     src='https://source.unsplash.com/random'
                     alt='Profile Picture'
                     sx={{
-                        width: '13vw',
-                        height: '13vw',
+                        width: 150,
+                        height: 150,
                         marginBottom: '5vh'
                     }}
                 />
-                <Typography>Jan Kowalski, 22</Typography>
+                <Typography color='white'>Jan Kowalski, 22</Typography>
             </Box>
             <Description />
         </Box>

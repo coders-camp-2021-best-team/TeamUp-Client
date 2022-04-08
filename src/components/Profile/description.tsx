@@ -16,13 +16,15 @@ export const Description = () => {
                     sx={{
                         paddingTop: '2.5vh',
                         paddingBottom: '10vh',
-                        backgroundColor: '#6C56F9',
+                        backgroundColor: 'primary.main',
                         borderRadius: '6px',
                         color: '#eee'
                     }}
                 >
-                    <Typography margin='0 1.5vh'>About</Typography>
-                    <Typography margin='1.5vh 1.5vh'>
+                    <Typography margin='0 1.5vh' color='white'>
+                        About
+                    </Typography>
+                    <Typography margin='1.5vh 1.5vh' color='white'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Dolore maiores sequi, qui, ab ducimus hic ullam incidunt
                         laudantium beatae consequatur in quas doloribus delectus
@@ -39,7 +41,7 @@ export const Description = () => {
                     {content.map(() => (
                         <Box
                             sx={{
-                                backgroundColor: '#B2A7FC',
+                                backgroundColor: 'primary.light',
                                 borderRadius: '16px',
                                 padding: '8px',
                                 margin: '1vh 0',

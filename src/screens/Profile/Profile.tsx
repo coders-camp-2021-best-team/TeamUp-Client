@@ -1,12 +1,5 @@
-import { DesktopProfile, MobileProfile } from '../../components';
-import { useOurMedia } from '../../hooks';
+import { UserProfile } from '../../components';
 
 export const Profile = () => {
-    const isPhoneSize = useOurMedia();
-    return (
-        <>
-            <div>Profile</div>
-            {isPhoneSize ? <MobileProfile /> : <DesktopProfile />}
-        </>
-    );
+    return <UserProfile />;
 };
