@@ -25,6 +25,27 @@ export const theme = createTheme({
                     padding: 0
                 }
             }
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    margin: '1rem 0 1rem 0',
+                    width: '100%',
+                    label: {
+                        color: 'unset'
+                    },
+                    fieldset: {
+                        borderColor: 'unset'
+                    }
+                }
+            }
+        },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    color: 'unset'
+                }
+            }
         }
     },
     palette: {
@@ -36,6 +57,9 @@ export const theme = createTheme({
         background: {
             default: '#1A1B22',
             paper: '#B2A7FC'
+        },
+        text: {
+            primary: '#FFFFFF'
         }
     },
     breakpoints: {
