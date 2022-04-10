@@ -4,7 +4,7 @@ export type Login = {
 };
 
 export type MappedResponse<T> = {
-    data: boolean | T | undefined;
+    data?: boolean | T;
     isLoading: boolean;
     isError: boolean;
 };

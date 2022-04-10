@@ -1,41 +1,43 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
 
-export const toastNotify = (status: number, text?: string) => {
+const succesStyles: ToastOptions = {
+    position: 'bottom-right',
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined
+};
+
+const errorStyles: ToastOptions = {
+    position: 'bottom-right',
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined
+};
+
+export const toastNotify = (status = 2137, text?: string) => {
     switch (status) {
         case 400:
             return toast.error(
-                text ? text : 'Bad request, try something else!',
-                {
-                    position: 'bottom-right',
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: false,
-                    progress: undefined
-                }
+                text || 'Bad request, try something else!',
+                errorStyles
             );
         case 401:
-            return toast.error(text ? text : 'Unauthorized');
+            return toast.error(text || 'Unauthorized');
         case 404:
-            return toast.error(text ? text : 'Not Found');
+            return toast.error(text || 'Not Found');
         case 500:
-            return toast.info(
-                text ? text : 'Internal server error, try again later'
-            );
+            return toast.info(text || 'Internal server error, try again later');
         case 200:
-            return toast.success(text ? text : 'Success!!', {
-                position: 'bottom-right',
-                autoClose: 3000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined
-            });
+            return toast.success(text || 'Success!!', succesStyles);
         default:
-            return;
+            return toast.error(text || 'Unknown error');
     }
 };

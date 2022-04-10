@@ -1,5 +1,5 @@
 import { request } from '../../Axios/Axios';
-import { Login } from '../../Utils/types';
+import { Login } from '../../utils/types/apiTypes';
 
 export const AuthService = {
     postLogin: ({ username, password }: Login) =>

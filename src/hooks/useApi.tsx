@@ -1,22 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useQuery } from 'react-query';
 
-import { toastNotify } from '../Utils/ToastNotify';
+import { toastNotify } from '../utils/ToastNotify';
 
 export function useRequest<T, G>(
     callback: (config: G) => Promise<AxiosResponse<T, G>>,
     args: G,
-    tag: string
+    tag: string,
+    toastToggle: boolean
 ) {
     const { data, isError, isLoading } = useQuery(tag, async () => {
         try {
             const data = await callback(args);
+            if (toastToggle) {
+                toastNotify(data.status);
+            }
             return data.data;
-        } catch (err: any) {
-            const isError = true;
-            toastNotify(err.response.status);
-            return isError;
+        } catch (err) {
+            if (toastToggle) {
+                if (axios.isAxiosError(err)) {
+                    toastNotify(err.request.status);
+                } else {
+                    toastNotify();
+                }
+            }
+            return true;
         }
     });
 
