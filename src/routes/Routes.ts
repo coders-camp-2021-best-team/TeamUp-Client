@@ -1,14 +1,18 @@
 export const ROUTES = {
+    // PUBLIC ROUTES
+    HOME: '/',
     LOGIN: '/login',
     REGISTER: '/register',
-    HOME: '/',
-    FEED: '/feed',
-    PROFILE: '/profile',
-    CHAT: '/chat',
-    SEARCH: '/search',
-    POST: '/post',
     RESET_PASSWORD: '/reset-password',
     CONFIRMATION_EMAIL: '/confirmation-email',
-    NOT_FOUND: '/not-found',
-    ERROR: '*'
+
+    // PROTECTED ROUTES
+    CHAT: '/chat',
+    FEED: '/feed',
+    POST: '/post',
+    PROFILE: '/profile',
+    SEARCH: '/search',
+
+    // ERROR ROUTES
+    NOT_FOUND: '/not-found'
 };
