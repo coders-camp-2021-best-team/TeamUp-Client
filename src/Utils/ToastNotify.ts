@@ -22,7 +22,7 @@ const errorStyles: ToastOptions = {
     progress: undefined
 };
 
-export const toastNotify = (status = 2137, text?: string) => {
+export const toastNotify = (status: number, text?: string) => {
     switch (status) {
         case 400:
             return toast.error(
