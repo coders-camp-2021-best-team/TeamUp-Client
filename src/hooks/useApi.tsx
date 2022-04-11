@@ -8,7 +8,7 @@ export function useRequest<T, G>(
     callback: (config: G) => Promise<AxiosResponse<T, G>>,
     args: G,
     tag: string,
-    toastToggle: boolean
+    toastToggle = false
 ) {
     const { data, isError, isLoading } = useQuery(tag, async () => {
         try {
