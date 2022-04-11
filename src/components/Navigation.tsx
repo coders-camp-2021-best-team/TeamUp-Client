@@ -2,7 +2,7 @@ import { MenuItem } from '@mui/material';
 import Link from '@mui/material/Link';
 import { NavLink } from 'react-router-dom';
 
-import { ROUTES } from '../../routes/Routes';
+import { ROUTES } from '../routes/Routes';
 
 type NavItem = {
     src: string;
@@ -19,7 +19,7 @@ const NAV_ITEMS = [
     {
         src: 'profile',
         label: 'Profile',
-        to: ROUTES.PROFILE
+        to: `${ROUTES.PROFILE}/username`
     },
     {
         src: 'feed',
@@ -29,7 +29,7 @@ const NAV_ITEMS = [
     {
         src: 'chat',
         label: 'Chat',
-        to: ROUTES.CHAT
+        to: `${ROUTES.CHAT}/id`
     },
     {
         src: 'post',
