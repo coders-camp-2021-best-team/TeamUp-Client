@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 
+import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
 
 export const Login = () => {
@@ -22,12 +23,15 @@ export const Login = () => {
         >
             <Box
                 sx={{
-                    margin: '120px 80px 0',
+                    margin: '120px 20px 0',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     textAlign: 'center',
-                    width: '25%'
+                    width: '90%',
+                    [theme.breakpoints.up('tablet')]: {
+                        width: '383px'
+                    }
                 }}
             >
                 <Avatar
@@ -35,12 +39,33 @@ export const Login = () => {
                         m: 1,
                         bgcolor: 'primary.main',
                         width: '70px',
-                        height: '70px'
+                        height: '70px',
+                        [theme.breakpoints.down('tablet')]: {
+                            width: '40px',
+                            height: '40px'
+                        }
                     }}
                 >
-                    <Lock sx={{ fontSize: '48px', color: 'common.white' }} />
+                    <Lock
+                        sx={{
+                            fontSize: '48px',
+                            color: 'common.white',
+                            [theme.breakpoints.down('tablet')]: {
+                                fontSize: '24px'
+                            }
+                        }}
+                    />
                 </Avatar>
-                <Typography component='h1' variant='h4' color='common.white'>
+                <Typography
+                    component='h1'
+                    variant='h4'
+                    color='common.white'
+                    sx={{
+                        [theme.breakpoints.down('tablet')]: {
+                            fontSize: '24px'
+                        }
+                    }}
+                >
                     Sign in
                 </Typography>
                 <TextField variant='outlined' required label='Email Address' />
@@ -52,7 +77,16 @@ export const Login = () => {
                         alignSelf: 'flex-start'
                     }}
                 />
-                <Button variant='contained'>Sign In</Button>
+                <Button
+                    variant='contained'
+                    sx={{
+                        [theme.breakpoints.down('tablet')]: {
+                            width: '90%'
+                        }
+                    }}
+                >
+                    Sign In
+                </Button>
                 <Box
                     sx={{
                         display: 'flex',
