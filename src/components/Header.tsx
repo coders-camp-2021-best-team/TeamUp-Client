@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { Navigation } from '.';
 
 export const Header = () => {
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
