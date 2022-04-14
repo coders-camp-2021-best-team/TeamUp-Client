@@ -1,80 +1,88 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
-import { Box, Fab, Typography } from '@mui/material';
+import { Box, Box as Image, Fab, Typography } from '@mui/material';
+
+import { getAge } from '../../utils';
+import { style } from './Feed.style';
+import { useFeedQuery } from './useFeed';
 
 export const Feed = () => {
-    const content = [1, 2, 3, 4, 5, 6];
+    const { data, isLoading } = useFeedQuery();
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
     return (
         <>
-            <Box
-                component='img'
-                alt='Profile Picture'
-                src='https://source.unsplash.com/random'
-                width='100%'
-                padding='2rem 1rem 1rem'
-                maxHeight='60vh'
-                minHeight='60vh'
-                sx={{
-                    borderRadius: '6px',
-                    position: 'relative'
-                }}
-            />
-            <Fab
-                color='warning'
-                aria-label='info'
-                sx={{
-                    width: '46px',
-                    height: '46px',
-                    position: 'absolute',
-                    top: '62%',
-                    right: '45%'
-                }}
-            >
-                <PermIdentityRoundedIcon sx={{ fontSize: '32px' }} />
-            </Fab>
+            <Box sx={style.imageBox}>
+                <Image
+                    component='img'
+                    alt='Profile Picture'
+                    src={data?.avatar}
+                    width='100%'
+                    maxWidth='425px'
+                    padding='1rem'
+                    height='60vh'
+                    sx={style.imageStyle}
+                />
+                <Fab
+                    onClick={() => {
+                        /**
+                         * go to profile screen
+                         */
+                        console.log(data?.id);
+                    }}
+                    color='warning'
+                    aria-label='info'
+                    sx={style.profileButton}
+                >
+                    <PermIdentityRoundedIcon sx={{ fontSize: '32px' }} />
+                </Fab>
+            </Box>
             <Typography
                 variant='h5'
                 sx={{ flexGrow: 1 }}
                 margin='2vw 5.5vw'
                 color='white'
             >
-                Jan Kowalski, 22
+                {data?.first_name} {data?.last_name} -{' '}
+                {data?.birthdate ? getAge(data.birthdate) : ''}
             </Typography>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    margin: '0 2vh'
-                }}
-            >
-                {content.map(() => (
-                    <Box
-                        sx={{
-                            backgroundColor: 'primary.main',
-                            borderRadius: '16px',
-                            padding: '8px',
-                            margin: '1vh 0',
-                            marginRight: '1.5vh'
-                        }}
-                    >
-                        <Typography variant='body2'>Chip content</Typography>
+            <Box sx={style.tagsBox}>
+                {data?.skills.map(({ id, level: { game } }) => (
+                    <Box key={id} sx={style.tagBox}>
+                        <Typography variant='body2'>{game.name}</Typography>
                     </Box>
                 ))}
             </Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    gap: '10rem',
-                    margin: '1rem 2rem',
-                    justifyContent: 'center'
-                }}
-            >
-                <Fab color='error' aria-label='cancel'>
-                    <CloseRoundedIcon sx={{ fontSize: '32px' }} />
+            <Box sx={style.swipeBox}>
+                <Fab
+                    color='error'
+                    aria-label='cancel'
+                    onClick={() => {
+                        /**
+                         *
+                         * some BE mutation that use data.id
+                         */
+                        console.log(data?.id);
+                    }}
+                >
+                    <CloseRoundedIcon sx={style.swipeButton} />
                 </Fab>
-                <Fab color='success' aria-label='approve'>
-                    <SportsEsportsRoundedIcon sx={{ fontSize: '32px' }} />
+                <Fab
+                    color='success'
+                    aria-label='approve'
+                    onClick={() => {
+                        /**
+                         *
+                         * approve and go to next id
+                         */
+                        console.log(data?.id);
+                    }}
+                >
+                    <SportsEsportsRoundedIcon sx={style.swipeButton} />
                 </Fab>
             </Box>
         </>

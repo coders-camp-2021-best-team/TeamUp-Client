@@ -6,7 +6,7 @@ export const BaseScreen = () => {
     return (
         <div className='baseScreen'>
             <Header />
-            <main>
+            <main style={{ maxWidth: 480, margin: '0 auto' }}>
                 <Outlet />
             </main>
         </div>
