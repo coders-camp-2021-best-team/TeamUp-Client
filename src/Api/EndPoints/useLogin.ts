@@ -1,17 +1,18 @@
-import { agent } from '../../Axios/Axios';
-import { useRequest } from '../../hooks/useApi';
-import { Login, MappedResponse } from '../../utils/types/apiTypes';
+import { AxiosError } from 'axios';
+import { useMutation } from 'react-query';
 
-export const useLogin = (
-    args: Login,
-    toastToggle: boolean
-): MappedResponse<Login> => {
-    const { data, isLoading, isError } = useRequest<Login, Login>(
-        agent.AuthService.postLogin,
-        args,
-        'login',
-        toastToggle
+import { queryClient } from '../..';
+import { Login, User } from '../../utils/types/apiTypes';
+import { AuthService } from '../client/AuthService';
+
+export const useLogin = () => {
+    return useMutation<User, AxiosError, Login>(
+        'current_user',
+        async (v) => (await AuthService.postLogin(v)).data,
+        {
+            onSuccess: (user) => {
+                queryClient.setQueryData('current_user', () => user);
+            }
+        }
     );
-
-    return { data, isError, isLoading };
 };
