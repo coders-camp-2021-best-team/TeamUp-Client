@@ -10,6 +10,7 @@ import {
     Feed,
     Home,
     Login,
+    Logout,
     NotFound,
     Post,
     Profile,
@@ -55,6 +56,8 @@ export const Router = () => {
                         </ProtectedRoute>
                     }
                 >
+                    <Route path={ROUTES.LOGOUT} element={<Logout />} />
+
                     <Route path={`${ROUTES.CHAT}/:id`} element={<Chat />} />
 
                     <Route path={ROUTES.FEED} element={<Feed />} />

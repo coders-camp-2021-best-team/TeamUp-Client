@@ -9,6 +9,7 @@ export const ROUTES = {
     CONFIRMATION_EMAIL: '/confirmation-email',
 
     // PROTECTED ROUTES
+    LOGOUT: '/logout',
     CHAT: '/chat',
     FEED: '/feed',
     POST: '/post',

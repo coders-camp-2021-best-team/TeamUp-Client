@@ -17,7 +17,6 @@ export const Profile = () => {
             <pre>
                 <code>{JSON.stringify(user, null, 4)}</code>
             </pre>
-            <button onClick={() => user.refetch()}>Refetch</button>
         </>
     );
 };

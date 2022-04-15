@@ -4,6 +4,8 @@ import { Login, Register, User } from '../../utils/types/apiTypes';
 export const AuthService = {
     login: (login: Login) => request.post<User>('/auth/login', login),
 
+    logout: () => request.post('/auth/logout'),
+
     register: (register: Register) =>
         request.post<Register>('/auth/register', register),
 

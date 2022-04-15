@@ -13,7 +13,7 @@ export const ProtectedRoute = ({ children }: Props) => {
     if (user.isLoading) return null;
 
     if (!user.data) {
-        return <Navigate to={ROUTES.HOME} replace />;
+        return <Navigate to={ROUTES.LOGIN} replace />;
     }
 
     return children;
