@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
+import { useUser } from '../../Api/EndPoints/useUser';
 import { ROUTES } from '../../routes/Routes';
 
 type Props = {
@@ -7,9 +8,13 @@ type Props = {
 };
 
 export const ProtectedRoute = ({ children }: Props) => {
-    const user = true; // TODO - Add real auth state - https://github.com/coders-camp-2021-best-team/TeamUp-Client/issues/10
-    if (user) {
-        return children;
+    const user = useUser();
+
+    if (user.isLoading) return null;
+
+    if (!user.data) {
+        return <Navigate to={ROUTES.HOME} replace />;
     }
-    return <Navigate to={ROUTES.HOME} replace />;
+
+    return children;
 };

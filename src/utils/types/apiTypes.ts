@@ -3,6 +3,28 @@ export type Login = {
     password: string;
 };
 
+export type Feed = {
+    recommendedUser: User;
+
+    createdOn: Date;
+};
+
+export type User = {
+    id: string;
+    email: string;
+    username: string;
+    first_name: string;
+    last_name: string;
+    birthdate: Date;
+    biogram: string;
+    role: UserAccountRole;
+    account_status: UserAccountStatus;
+    activity_status: UserActivityStatus;
+    avatar?: string;
+
+    skills: UserSkill[];
+};
+
 export enum UserAccountRole {
     ADMIN = 'ADMIN',
     USER = 'USER'
@@ -20,20 +42,21 @@ export enum UserActivityStatus {
     DO_NOT_DISTURB = 'DO_NOT_DISTURB',
     OFFLINE = 'OFFLINE'
 }
-
-export interface User {
+export type UserSkill = {
     id: string;
-    email: string;
-    username: string;
-    first_name: string;
-    last_name: string;
-    birthdate: string;
-    biogram: string;
-    role: UserAccountRole;
-    account_status: UserAccountStatus;
-    activity_status: UserActivityStatus;
-    avatar?: string;
-}
+    level: ExperienceLevel;
+};
+
+export type ExperienceLevel = {
+    id: string;
+    name: string;
+    game: Game;
+};
+
+export type Game = {
+    id: string;
+    name: string;
+};
 
 export type Register = {
     email: string;
