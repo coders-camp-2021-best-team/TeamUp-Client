@@ -5,14 +5,14 @@ import { ToastContainer } from 'react-toastify';
 
 import { App } from './App';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 ReactDOM.render(
-    <QueryClientProvider client={queryClient}>
-        <React.StrictMode>
+    <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
             <ToastContainer />
             <App />
-        </React.StrictMode>
-    </QueryClientProvider>,
+        </QueryClientProvider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
