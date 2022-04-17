@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "GPL-3.0",
     "scripts": {
-        "prepare": "husky install",
+        "postinstall": "husky install",
         "prebuild": "rimraf build/",
         "build": "react-scripts build",
         "start": "react-scripts start",
