@@ -6,7 +6,7 @@ export type Login = {
 export type Feed = {
     recommendedUser: User;
 
-    createdOn: Date;
+    createdOn: string;
 };
 
 export type User = {
@@ -15,7 +15,7 @@ export type User = {
     username: string;
     first_name: string;
     last_name: string;
-    birthdate: Date;
+    birthdate: string;
     biogram: string;
     role: UserAccountRole;
     account_status: UserAccountStatus;
@@ -72,3 +72,46 @@ export type MappedResponse<T> = {
     isLoading: boolean;
     isError: boolean;
 };
+
+export class QueryPostDto {
+    q?: string;
+    take?: number;
+    skip?: number;
+    sort?: 'ASC' | 'DESC';
+}
+
+export type Post = {
+    id: string;
+    author: User;
+    categories: PostCategory[];
+    title: string;
+    body: string;
+    createdOn: string;
+    updatedOn: string;
+};
+
+export type PostCategory = {
+    id: string;
+    name: string;
+};
+
+export type PostAttachment = {
+    key: string;
+};
+
+export type PostVotes = {
+    upvotes: number;
+    downvotes: number;
+    me: PostVote | null;
+};
+
+export type PostVote = {
+    id: string;
+    user: User;
+    type: PostVoteType;
+};
+
+export enum PostVoteType {
+    UPVOTE = 'UPVOTE',
+    DOWNVOTE = 'DOWNVOTE'
+}

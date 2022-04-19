@@ -1,5 +1,13 @@
 import { request } from '../../Axios/Axios';
-import { Login, Register, User } from '../../utils/types/apiTypes';
+import {
+    Login,
+    Post,
+    PostAttachment,
+    PostVotes,
+    QueryPostDto,
+    Register,
+    User
+} from '../../utils/types/apiTypes';
 
 export const AuthService = {
     login: (login: Login) => request.post<User>('/auth/login', login),
@@ -9,5 +17,10 @@ export const AuthService = {
     register: (register: Register) =>
         request.post<Register>('/auth/register', register),
 
-    user: (id: string) => request.get<User>(`/user/${id}`)
+    user: (id: string) => request.get<User>(`/user/${id}`),
+
+    posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
+    postAttachments: (id: string) =>
+        request.get<PostAttachment[]>(`/post/${id}/attachment`),
+    postVotes: (id: string) => request.get<PostVotes>(`/post/${id}/vote`)
 };

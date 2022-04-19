@@ -12,7 +12,7 @@ export const ROUTES = {
     LOGOUT: '/logout',
     CHAT: '/chat',
     FEED: '/feed',
-    POST: '/post',
+    POSTS: '/posts',
     PROFILE: '/profile',
     SEARCH: '/search',
 
