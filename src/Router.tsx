@@ -12,7 +12,7 @@ import {
     Login,
     Logout,
     NotFound,
-    Post,
+    Posts,
     Profile,
     Register,
     ResetPassword,
@@ -62,7 +62,7 @@ export const Router = () => {
 
                     <Route path={ROUTES.FEED} element={<Feed />} />
 
-                    <Route path={ROUTES.POST} element={<Post />} />
+                    <Route path={ROUTES.POSTS} element={<Posts />} />
 
                     <Route
                         path={`${ROUTES.PROFILE}/:id`}

@@ -6,7 +6,7 @@ export * from './Feed';
 export * from './Home';
 export * from './Login';
 export * from './Logout';
-export * from './Post';
+export * from './Posts';
 export * from './Profile';
 export * from './Register';
 export * from './ResetPassword';
