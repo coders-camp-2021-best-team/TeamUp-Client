@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { ProtectedRoute } from './components';
+import { LoggedOutRoute } from './components/LoggedOutRoute';
 import { ROUTES } from './routes/Routes';
 import {
     BaseScreen,
@@ -9,6 +10,7 @@ import {
     Feed,
     Home,
     Login,
+    Logout,
     NotFound,
     Post,
     Profile,
@@ -23,7 +25,15 @@ export const Router = () => {
             <Routes>
                 <Route element={<BaseScreen />}>
                     <Route path={ROUTES.HOME} element={<Home />} />
+                </Route>
 
+                <Route
+                    element={
+                        <LoggedOutRoute>
+                            <BaseScreen />
+                        </LoggedOutRoute>
+                    }
+                >
                     <Route path={ROUTES.LOGIN} element={<Login />} />
 
                     <Route path={ROUTES.REGISTER} element={<Register />} />
@@ -46,6 +56,8 @@ export const Router = () => {
                         </ProtectedRoute>
                     }
                 >
+                    <Route path={ROUTES.LOGOUT} element={<Logout />} />
+
                     <Route path={`${ROUTES.CHAT}/:id`} element={<Chat />} />
 
                     <Route path={ROUTES.FEED} element={<Feed />} />

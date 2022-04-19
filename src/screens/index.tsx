@@ -5,6 +5,7 @@ export * from './Error';
 export * from './Feed';
 export * from './Home';
 export * from './Login';
+export * from './Logout';
 export * from './Post';
 export * from './Profile';
 export * from './Register';

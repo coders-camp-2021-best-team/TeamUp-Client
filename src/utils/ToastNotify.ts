@@ -1,43 +1,37 @@
 import 'react-toastify/dist/ReactToastify.css';
 
+import { getReasonPhrase } from 'http-status-codes';
 import { toast, ToastOptions } from 'react-toastify';
 
-const succesStyles: ToastOptions = {
+const styles: ToastOptions = {
     position: 'bottom-right',
-    autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
-    draggable: false,
-    progress: undefined
+    draggable: false
+};
+
+const succesStyles: ToastOptions = {
+    ...styles,
+    autoClose: 3000
 };
 
 const errorStyles: ToastOptions = {
-    position: 'bottom-right',
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: false,
-    progress: undefined
+    ...styles,
+    autoClose: 5000
 };
 
-export const toastNotify = (status?: number, text?: string) => {
-    switch (status) {
-        case 400:
-            return toast.error(
-                text || 'Bad request, try something else!',
-                errorStyles
-            );
-        case 401:
-            return toast.error(text || 'Unauthorized');
-        case 404:
-            return toast.error(text || 'Not Found');
-        case 500:
-            return toast.info(text || 'Internal server error, try again later');
-        case 200:
-            return toast.success(text || 'Success!!', succesStyles);
-        default:
-            return toast.error(text || 'Unknown error');
+export const toastNotify = (
+    status = 500,
+    text: string = getReasonPhrase(status)
+) => {
+    const statusGroup = Math.floor(status / 100);
+
+    if (statusGroup === 2) {
+        toast.info(text, succesStyles);
+    } else if (statusGroup === 4 || statusGroup === 5) {
+        toast.error(text, errorStyles);
+    } else {
+        toastNotify(500);
     }
 };

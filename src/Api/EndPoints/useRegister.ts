@@ -6,6 +6,6 @@ import { AuthService } from '../client/AuthService';
 
 export const useRegister = () => {
     return useMutation<Register, AxiosError, Register>(
-        async (v) => (await AuthService.postRegister(v)).data
+        async (v) => (await AuthService.register(v)).data
     );
 };

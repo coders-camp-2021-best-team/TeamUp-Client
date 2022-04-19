@@ -1,12 +1,15 @@
 export const ROUTES = {
     // PUBLIC ROUTES
     HOME: '/',
+
+    // LOGGED OUT ROUTES
     LOGIN: '/login',
     REGISTER: '/register',
     RESET_PASSWORD: '/reset-password',
     CONFIRMATION_EMAIL: '/confirmation-email',
 
     // PROTECTED ROUTES
+    LOGOUT: '/logout',
     CHAT: '/chat',
     FEED: '/feed',
     POST: '/post',
