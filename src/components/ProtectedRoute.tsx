@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
-import { useUser } from '../../Api/EndPoints/useUser';
-import { ROUTES } from '../../routes/Routes';
+import { useUser } from '../Api/EndPoints/useUser';
+import { ROUTES } from '../routes/Routes';
 
 type Props = {
     children: JSX.Element;
