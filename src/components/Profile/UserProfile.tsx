@@ -4,7 +4,7 @@ import { useOurMedia } from '../../hooks';
 import { User } from '../../utils/types/apiTypes';
 import { Description } from './description';
 
-export const UserProfile = (user: User) => {
+export const UserProfile = ({ user }: { user: User }) => {
     const isPhoneSize = useOurMedia();
     return (
         <>
@@ -26,8 +26,7 @@ export const UserProfile = (user: User) => {
                         margin='2vh 5.5vw'
                         color='white'
                     >
-                        {user.first_name} {user.last_name}, Born at{' '}
-                        {user.birthdate}
+                        {user.first_name} {user.last_name}, {user.birthdate}
                     </Typography>
                     <Description description={user.biogram} />
                 </>
@@ -57,8 +56,7 @@ export const UserProfile = (user: User) => {
                             }}
                         />
                         <Typography color='white'>
-                            {user.first_name} {user.last_name}, Born at{' '}
-                            {user.birthdate}
+                            {user.first_name} {user.last_name}, {user.birthdate}
                         </Typography>
                     </Box>
                     <Description description={user.biogram} />
