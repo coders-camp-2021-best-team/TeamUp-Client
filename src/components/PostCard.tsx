@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 import { usePostAttachments } from '../Api/EndPoints/usePostAttachments';
 import { usePostVotes } from '../Api/EndPoints/usePostVotes';
+import { useVote } from '../Api/EndPoints/useVote';
 import { CDN } from '../utils/CDN';
 import { Post, PostVoteType } from '../utils/types/apiTypes';
 
@@ -23,6 +24,7 @@ export const PostCard = ({
     const [isFull, setFull] = useState(full);
     const attachments = usePostAttachments(post.id);
     const votes = usePostVotes(post.id);
+    const vote = useVote(post.id);
 
     if (
         attachments.isLoading ||
@@ -32,24 +34,29 @@ export const PostCard = ({
     )
         return null;
 
+    const upvoted = votes.data.me?.type === PostVoteType.UPVOTE;
+    const downvoted = votes.data.me?.type === PostVoteType.DOWNVOTE;
+
     return (
         <Card style={{ margin: '20px' }} onClick={() => setFull((a) => !a)}>
             <CardHeader
                 avatar={
                     <>
                         <ArrowUpward
-                            color={
-                                votes.data.me?.type === PostVoteType.UPVOTE
-                                    ? 'success'
-                                    : 'primary'
+                            color={upvoted ? 'success' : 'primary'}
+                            onClick={() =>
+                                vote.mutate(
+                                    upvoted ? 'NONE' : PostVoteType.UPVOTE
+                                )
                             }
                         />
                         {votes.data.upvotes - votes.data.downvotes}
                         <ArrowDownward
-                            color={
-                                votes.data.me?.type === PostVoteType.DOWNVOTE
-                                    ? 'error'
-                                    : 'primary'
+                            color={downvoted ? 'error' : 'primary'}
+                            onClick={() =>
+                                vote.mutate(
+                                    downvoted ? 'NONE' : PostVoteType.DOWNVOTE
+                                )
                             }
                         />
                     </>
