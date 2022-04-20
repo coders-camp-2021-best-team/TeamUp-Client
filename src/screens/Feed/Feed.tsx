@@ -20,7 +20,7 @@ export const Feed = () => {
                 <Image
                     component='img'
                     alt='Profile Picture'
-                    src={data?.avatar}
+                    src='https://source.unsplash.com/random' //{data?.avatar}
                     width='100%'
                     maxWidth='425px'
                     padding='1rem'
@@ -31,6 +31,9 @@ export const Feed = () => {
                     onClick={() => {
                         /**
                          * go to profile screen
+                         * history.push('path do innej stront ${data?.id}')
+                         * useNavigate --> zwraca argument ze ścieżką
+                         *
                          */
                         console.log(data?.id);
                     }}

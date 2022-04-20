@@ -1,5 +1,5 @@
 {
-    "*.{js,ts,json,md,html}": "yarn format",
+    "*.{js,ts,jsx,tsx,json,md,html}": "yarn format",
     "*.+(eslint|lintstaged|prettier)rc": "yarn format",
-    "*.{js,ts}": "yarn lint"
+    "*.{js,ts,jsx,tsx}": "yarn lint"
 }

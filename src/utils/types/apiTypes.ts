@@ -3,10 +3,10 @@ export type Login = {
     password: string;
 };
 
-export type MappedResponse<T> = {
-    data?: boolean | T;
-    isLoading: boolean;
-    isError: boolean;
+export type Feed = {
+    recommendedUser: User;
+
+    createdOn: string;
 };
 
 export type User = {
@@ -15,7 +15,7 @@ export type User = {
     username: string;
     first_name: string;
     last_name: string;
-    birthdate: Date;
+    birthdate: string;
     biogram: string;
     role: UserAccountRole;
     account_status: UserAccountStatus;
@@ -23,22 +23,6 @@ export type User = {
     avatar?: string;
 
     skills: UserSkill[];
-};
-
-export type UserSkill = {
-    id: string;
-    level: ExperienceLevel;
-};
-
-export type ExperienceLevel = {
-    id: string;
-    name: string;
-    game: Game;
-};
-
-export type Game = {
-    id: string;
-    name: string;
 };
 
 export enum UserAccountRole {
@@ -57,4 +41,77 @@ export enum UserActivityStatus {
     IDLE = 'IDLE',
     DO_NOT_DISTURB = 'DO_NOT_DISTURB',
     OFFLINE = 'OFFLINE'
+}
+export type UserSkill = {
+    id: string;
+    level: ExperienceLevel;
+};
+
+export type ExperienceLevel = {
+    id: string;
+    name: string;
+    game: Game;
+};
+
+export type Game = {
+    id: string;
+    name: string;
+};
+
+export type Register = {
+    email: string;
+    username: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    birthdate: string;
+};
+
+export type MappedResponse<T> = {
+    data?: boolean | T;
+    isLoading: boolean;
+    isError: boolean;
+};
+
+export class QueryPostDto {
+    q?: string;
+    take?: number;
+    skip?: number;
+    sort?: 'ASC' | 'DESC';
+}
+
+export type Post = {
+    id: string;
+    author: User;
+    categories: PostCategory[];
+    title: string;
+    body: string;
+    createdOn: string;
+    updatedOn: string;
+};
+
+export type PostCategory = {
+    id: string;
+    name: string;
+};
+
+export type PostAttachment = {
+    key: string;
+};
+
+export type PostVotes = {
+    upvotes: number;
+    downvotes: number;
+    me: PostVote | null;
+};
+
+export type PostVote = {
+    id: string;
+    user: User;
+    type: PostVoteType;
+};
+
+export enum PostVoteType {
+    UPVOTE = 'UPVOTE',
+    DOWNVOTE = 'DOWNVOTE'
 }
