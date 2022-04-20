@@ -3,7 +3,9 @@ import {
     Login,
     Post,
     PostAttachment,
+    PostVote,
     PostVotes,
+    PostVoteType,
     QueryPostDto,
     Register,
     User
@@ -22,5 +24,8 @@ export const AuthService = {
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>
         request.get<PostAttachment[]>(`/post/${id}/attachment`),
-    postVotes: (id: string) => request.get<PostVotes>(`/post/${id}/vote`)
+    postVotes: (id: string) => request.get<PostVotes>(`/post/${id}/vote`),
+    postVote: (id: string, type: PostVoteType) =>
+        request.post<PostVote>(`/post/${id}/vote`, { type }),
+    postRemoveVote: (id: string) => request.delete<PostVote>(`/post/${id}/vote`)
 };
