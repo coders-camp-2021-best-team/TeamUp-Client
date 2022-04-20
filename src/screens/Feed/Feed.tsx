@@ -20,7 +20,7 @@ export const Feed = () => {
                 <Image
                     component='img'
                     alt='Profile Picture'
-                    src='https://source.unsplash.com/random' //{data?.avatar}
+                    src={data?.avatar}
                     width='100%'
                     maxWidth='425px'
                     padding='1rem'
@@ -29,12 +29,7 @@ export const Feed = () => {
                 />
                 <Fab
                     onClick={() => {
-                        /**
-                         * go to profile screen
-                         * history.push('path do innej stront ${data?.id}')
-                         * useNavigate --> zwraca argument ze ścieżką
-                         *
-                         */
+                        // go to profile screen
                         console.log(data?.id);
                     }}
                     color='warning'
@@ -65,10 +60,7 @@ export const Feed = () => {
                     color='error'
                     aria-label='cancel'
                     onClick={() => {
-                        /**
-                         *
-                         * some BE mutation that use data.id
-                         */
+                        // some BE mutation that use data.id
                         console.log(data?.id);
                     }}
                 >
@@ -78,10 +70,7 @@ export const Feed = () => {
                     color='success'
                     aria-label='approve'
                     onClick={() => {
-                        /**
-                         *
-                         * approve and go to next id
-                         */
+                        // approve and go to next id
                         console.log(data?.id);
                     }}
                 >
