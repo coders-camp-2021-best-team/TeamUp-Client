@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 
-export const Description = () => {
+export const Description = ({ description }: { description: string }) => {
+    // TODO replace 'chip content' with appropriate user data
     const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     return (
         <>
@@ -22,12 +23,7 @@ export const Description = () => {
                     }}
                 >
                     <Typography margin='0 1.5vh'>About</Typography>
-                    <Typography margin='1.5vh 1.5vh'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dolore maiores sequi, qui, ab ducimus hic ullam incidunt
-                        laudantium beatae consequatur in quas doloribus delectus
-                        tenetur fugit, consectetur officiis dolorum dignissimos.
-                    </Typography>
+                    <Typography margin='1.5vh 1.5vh'>{description}</Typography>
                 </Box>
                 <Box
                     sx={{

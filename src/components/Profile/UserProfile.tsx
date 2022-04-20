@@ -1,10 +1,10 @@
 import { Avatar, Box, Typography } from '@mui/material';
 
 import { useOurMedia } from '../../hooks';
+import { User } from '../../utils/types/apiTypes';
 import { Description } from './description';
 
-//TODO connect screen to API
-export const UserProfile = () => {
+export const UserProfile = (user: User) => {
     const isPhoneSize = useOurMedia();
     return (
         <>
@@ -13,7 +13,7 @@ export const UserProfile = () => {
                     <Box
                         component='img'
                         alt='Profile Picture'
-                        src='https://source.unsplash.com/random'
+                        src={user.avatar}
                         width='100%'
                         height='60vh'
                         sx={{
@@ -26,9 +26,10 @@ export const UserProfile = () => {
                         margin='2vh 5.5vw'
                         color='white'
                     >
-                        Jan Kowalski, 22
+                        {user.first_name} {user.last_name}, Born at{' '}
+                        {user.birthdate}
                     </Typography>
-                    <Description />
+                    <Description description={user.biogram} />
                 </>
             ) : (
                 <Box
@@ -47,7 +48,7 @@ export const UserProfile = () => {
                         }}
                     >
                         <Avatar
-                            src='https://source.unsplash.com/random'
+                            src={user.avatar}
                             alt='Profile Picture'
                             sx={{
                                 width: 150,
@@ -55,9 +56,12 @@ export const UserProfile = () => {
                                 marginBottom: '5vh'
                             }}
                         />
-                        <Typography color='white'>Jan Kowalski, 22</Typography>
+                        <Typography color='white'>
+                            {user.first_name} {user.last_name}, Born at{' '}
+                            {user.birthdate}
+                        </Typography>
                     </Box>
-                    <Description />
+                    <Description description={user.biogram} />
                 </Box>
             )}
         </>
