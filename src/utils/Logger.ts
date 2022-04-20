@@ -1,20 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export class Logger {
-    static info(tag: string, message: string, context?: any) {
-        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
+    static debug(tag: string, message: string, context?: unknown) {
+        if (process.env.REACT_APP_DEBUG !== 'true') {
+            return;
+        }
+        console.debug(`[${tag}] : ${message}`, { context });
+    }
+
+    static info(tag: string, message: string, context?: unknown) {
+        if (process.env.REACT_APP_DEBUG !== 'true') {
             return;
         }
         console.log(`[${tag}] : ${message}`, { context });
     }
 
-    static debug(tag: string, message: string, context?: any) {
-        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
-            return;
-        }
-        console.debug(`[${tag}] : ${message}`, { context });
-    }
-    static error(tag: string, message: string, context?: any) {
-        if (process.env.REACT_APP_DEVELOPER_MODE !== 'true') {
+    static error(tag: string, message: string, context?: unknown) {
+        if (process.env.REACT_APP_DEBUG !== 'true') {
             return;
         }
         console.error(`[${tag}] : ${message}`, { context });

@@ -68,8 +68,18 @@ export const Login = () => {
                 >
                     Sign in
                 </Typography>
-                <TextField variant='outlined' required label='Email Address' />
-                <TextField variant='outlined' required label='Password' />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Email Address'
+                    name='username'
+                />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Password'
+                    name='password'
+                />
                 <FormControlLabel
                     label='Remember me'
                     control={<Checkbox />}

@@ -4,7 +4,7 @@ import { Header } from '../../components';
 
 export const BaseScreen = () => {
     return (
-        <div className='baseScreen'>
+        <div className='base-screen'>
             <Header />
             <main>
                 <Outlet />

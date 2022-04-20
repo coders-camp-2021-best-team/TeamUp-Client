@@ -1,14 +1,21 @@
 export const ROUTES = {
+    // PUBLIC ROUTES
+    HOME: '/',
+
+    // LOGGED OUT ROUTES
     LOGIN: '/login',
     REGISTER: '/register',
-    HOME: '/',
-    FEED: '/feed',
-    PROFILE: '/profile',
-    CHAT: '/chat',
-    SEARCH: '/search',
-    POST: '/post',
     RESET_PASSWORD: '/reset-password',
     CONFIRMATION_EMAIL: '/confirmation-email',
-    NOT_FOUND: '/not-found',
-    ERROR: '*'
+
+    // PROTECTED ROUTES
+    LOGOUT: '/logout',
+    CHAT: '/chat',
+    FEED: '/feed',
+    POSTS: '/posts',
+    PROFILE: '/profile',
+    SEARCH: '/search',
+
+    // ERROR ROUTES
+    NOT_FOUND: '/not-found'
 };

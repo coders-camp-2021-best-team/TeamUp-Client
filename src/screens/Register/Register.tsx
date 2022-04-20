@@ -10,6 +10,20 @@ import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
 
 export const Register = () => {
+    //const register = useRegister();
+    // const [username] = useState('poprostumieciek');
+    // const [password] = useState('admin123456');
+
+    // const handleClick = () => {
+    //     register.mutate({
+    //         email: `${username}@localhost.com`,
+    //         username,
+    //         password,
+    //         birthdate: new Date(2005, 7, 17).toISOString(),
+    //         first_name: username,
+    //         last_name: username
+    //     });
+    // };
     return (
         <div
             style={{
@@ -76,7 +90,19 @@ export const Register = () => {
                         }}
                     />
                 </Box>
+                <TextField variant='outlined' required label='Username' />
                 <TextField variant='outlined' required label='Email Address' />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Birthdate'
+                    type='date'
+                    sx={{
+                        label: {
+                            display: 'none'
+                        }
+                    }}
+                />
                 <TextField variant='outlined' required label='Password' />
                 <TextField
                     variant='outlined'
@@ -90,8 +116,9 @@ export const Register = () => {
                             width: '90%'
                         }
                     }}
+                    onClick={() => console.log('dupa')}
                 >
-                    Sign In
+                    Sign Up
                 </Button>
                 <Box
                     sx={{
