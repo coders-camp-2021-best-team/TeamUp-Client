@@ -56,7 +56,7 @@ export const Feed = () => {
                 {feed.data.recommendedUser.last_name} -{' '}
                 {getAge(feed.data.recommendedUser.birthdate)}
             </Typography>
-            <Box sx={style.tagsBox}>
+            {/* <Box sx={style.tagsBox}>
                 {feed.data.recommendedUser.skills.map(
                     ({ id, level: { game } }) => (
                         <Box key={id} sx={style.tagBox}>
@@ -64,7 +64,7 @@ export const Feed = () => {
                         </Box>
                     )
                 )}
-            </Box>
+            </Box> */}
             <Box sx={style.swipeBox}>
                 <Fab
                     color='error'

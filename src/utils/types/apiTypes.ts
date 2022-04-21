@@ -22,7 +22,7 @@ export type User = {
     activity_status: UserActivityStatus;
     avatar?: string;
 
-    skills: UserSkill[];
+    skills?: UserSkill[];
 };
 
 export enum UserAccountRole {
