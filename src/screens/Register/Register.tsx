@@ -103,7 +103,10 @@ export const Register = () => {
                     required
                     label='Email Address'
                     type='email'
-                    {...register('email', { required: true })}
+                    {...register('email', {
+                        required: true,
+                        pattern: /^\S+@\S+$/i
+                    })}
                 />
                 <TextField
                     variant='outlined'
