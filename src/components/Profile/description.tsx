@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
-export const Description = ({ description }: { description: string }) => {
-    // TODO replace 'chip content' with appropriate user data
-    const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+import { User } from '../../utils/types/apiTypes';
+
+export const Description = ({ user }: { user: User }) => {
     return (
         <>
             <Box
@@ -13,18 +13,22 @@ export const Description = ({ description }: { description: string }) => {
                     marginTop: '0'
                 }}
             >
-                <Box
-                    sx={{
-                        paddingTop: '2.5vh',
-                        paddingBottom: '10vh',
-                        backgroundColor: 'primary.main',
-                        borderRadius: '6px',
-                        color: 'white'
-                    }}
-                >
-                    <Typography margin='0 1.5vh'>About</Typography>
-                    <Typography margin='1.5vh 1.5vh'>{description}</Typography>
-                </Box>
+                {user.biogram ? (
+                    <Box
+                        sx={{
+                            paddingTop: '2.5vh',
+                            paddingBottom: '10vh',
+                            backgroundColor: 'primary.main',
+                            borderRadius: '6px',
+                            color: 'white'
+                        }}
+                    >
+                        <Typography margin='0 1.5vh'>About</Typography>
+                        <Typography margin='1.5vh 1.5vh'>
+                            {user.biogram}
+                        </Typography>
+                    </Box>
+                ) : null}
                 <Box
                     sx={{
                         display: 'flex',
@@ -32,21 +36,30 @@ export const Description = ({ description }: { description: string }) => {
                         marginTop: '2vh'
                     }}
                 >
-                    {content.map(() => (
-                        <Box
-                            sx={{
-                                backgroundColor: 'primary.light',
-                                borderRadius: '16px',
-                                padding: '8px',
-                                margin: '1vh 0',
-                                marginRight: '1.5vh'
-                            }}
-                        >
-                            <Typography variant='body2'>
-                                Chip content
-                            </Typography>
-                        </Box>
-                    ))}
+                    {user.skills?.map(
+                        ({
+                            level: {
+                                name: levelName,
+                                game: { name: gameName }
+                            },
+                            id
+                        }) => (
+                            <Box
+                                key={id}
+                                sx={{
+                                    backgroundColor: 'primary.light',
+                                    borderRadius: '16px',
+                                    padding: '8px',
+                                    margin: '1vh 0',
+                                    marginRight: '1.5vh'
+                                }}
+                            >
+                                <Typography variant='body2'>
+                                    {gameName} - {levelName}
+                                </Typography>
+                            </Box>
+                        )
+                    )}
                 </Box>
             </Box>
         </>

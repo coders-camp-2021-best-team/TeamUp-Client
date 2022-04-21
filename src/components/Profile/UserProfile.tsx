@@ -1,6 +1,7 @@
 import { Avatar, Box, Typography } from '@mui/material';
 
 import { useOurMedia } from '../../hooks';
+import { CDN } from '../../utils/CDN';
 import { User } from '../../utils/types/apiTypes';
 import { Description } from './description';
 
@@ -13,7 +14,7 @@ export const UserProfile = ({ user }: { user: User }) => {
                     <Box
                         component='img'
                         alt='Profile Picture'
-                        src={user.avatar}
+                        src={CDN(user.avatar || '')}
                         width='100%'
                         height='60vh'
                         sx={{
@@ -28,7 +29,7 @@ export const UserProfile = ({ user }: { user: User }) => {
                     >
                         {user.first_name} {user.last_name}, {user.birthdate}
                     </Typography>
-                    <Description description={user.biogram} />
+                    <Description user={user} />
                 </>
             ) : (
                 <Box
@@ -59,7 +60,7 @@ export const UserProfile = ({ user }: { user: User }) => {
                             {user.first_name} {user.last_name}, {user.birthdate}
                         </Typography>
                     </Box>
-                    <Description description={user.biogram} />
+                    <Description user={user} />
                 </Box>
             )}
         </>
