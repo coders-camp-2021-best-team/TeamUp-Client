@@ -18,7 +18,8 @@ export const UserProfile = ({ user }: { user: User }) => {
                         width='100%'
                         height='60vh'
                         sx={{
-                            borderRadius: '6px'
+                            borderRadius: '6px',
+                            objectFit: 'cover'
                         }}
                     />
                     <Typography
