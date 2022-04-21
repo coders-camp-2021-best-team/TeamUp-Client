@@ -29,7 +29,7 @@ export const Feed = () => {
                     src={CDN(feed.data.recommendedUser.avatar || '')}
                     width='100%'
                     maxWidth='425px'
-                    height='500px'
+                    height='450px'
                     sx={style.imageStyle}
                 />
                 <Fab
@@ -48,7 +48,7 @@ export const Feed = () => {
             <Typography
                 variant='h5'
                 sx={{ flexGrow: 1 }}
-                margin='2vw 5.5vw'
+                margin='40px 25px 10px'
                 color='white'
             >
                 {feed.data.recommendedUser.first_name}{' '}
