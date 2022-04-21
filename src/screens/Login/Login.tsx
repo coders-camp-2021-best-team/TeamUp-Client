@@ -41,7 +41,14 @@ export const Login = () => {
             });
     };
     return (
-        <div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center'
+            }}
+        >
             <Box
                 sx={{
                     margin: '120px 20px 0',

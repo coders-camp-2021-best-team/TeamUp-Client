@@ -50,7 +50,14 @@ export const Register = () => {
             });
     };
     return (
-        <div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center'
+            }}
+        >
             <Box
                 sx={{
                     margin: '120px 20px 0',
@@ -139,7 +146,6 @@ export const Register = () => {
                                     display: 'block'
                                 }
                         }}
-                        {...register('firstName', { required: true })}
                     />
                     <TextField
                         {...register('password')}
