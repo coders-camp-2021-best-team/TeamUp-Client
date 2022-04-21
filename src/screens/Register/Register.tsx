@@ -1,29 +1,54 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import Lock from '@mui/icons-material/Lock';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { AxiosError } from 'axios';
+import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
 
+import { useRegister } from '../../Api/EndPoints/useRegister';
 import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
+import { toastNotify } from '../../utils/ToastNotify';
+import { RegisterValues } from '../../utils/types/formValues';
 
 export const Register = () => {
-    //const register = useRegister();
-    // const [username] = useState('poprostumieciek');
-    // const [password] = useState('admin123456');
-
-    // const handleClick = () => {
-    //     register.mutate({
-    //         email: `${username}@localhost.com`,
-    //         username,
-    //         password,
-    //         birthdate: new Date(2005, 7, 17).toISOString(),
-    //         first_name: username,
-    //         last_name: username
-    //     });
-    // };
+    const formSchema = Yup.object().shape({
+        password: Yup.string()
+            .required('Password is mendatory')
+            .min(8, 'Password must be at 8 char long'),
+        confirmPwd: Yup.string()
+            .required('Password is mendatory')
+            .oneOf([Yup.ref('password')], 'Passwords does not match')
+    });
+    const formOptions = { resolver: yupResolver(formSchema) };
+    const registerFunc = useRegister();
+    const { handleSubmit, register, formState } =
+        useForm<RegisterValues>(formOptions);
+    const { errors } = formState;
+    const onSubmit = (data: RegisterValues) => {
+        registerFunc
+            .mutateAsync({
+                email: data.email,
+                username: data.username,
+                password: data.password,
+                first_name: data.firstName,
+                last_name: data.lastName,
+                birthdate: data.birthday
+            })
+            .then(() => toastNotify(200, 'Account has been created'))
+            .catch((err: AxiosError) => {
+                if (err.code) {
+                    toastNotify(parseInt(err.code), err.message);
+                } else {
+                    toastNotify();
+                }
+            });
+    };
     return (
         <div
             style={{
@@ -59,67 +84,101 @@ export const Register = () => {
                 <Typography component='h1' variant='h4' color='common.white'>
                     Sign up
                 </Typography>
-                <Box
-                    sx={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDireciotn: 'row',
-                        justifyContent: 'space-between'
-                    }}
-                >
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDireciotn: 'row',
+                            justifyContent: 'space-between'
+                        }}
+                    >
+                        <TextField
+                            {...register('firstName')}
+                            variant='outlined'
+                            required
+                            label='First Name'
+                            sx={{
+                                width: '185px',
+                                [theme.breakpoints.down('tablet')]: {
+                                    width: '49%'
+                                }
+                            }}
+                        />
+                        <TextField
+                            {...register('lastName')}
+                            variant='outlined'
+                            required
+                            label='Last Name'
+                            sx={{
+                                width: '185px',
+                                [theme.breakpoints.down('tablet')]: {
+                                    width: '49%'
+                                }
+                            }}
+                        />
+                    </Box>
                     <TextField
+                        {...register('username')}
                         variant='outlined'
                         required
-                        label='First Name'
+                        label='Username'
+                    />
+                    <TextField
+                        {...register('email')}
+                        variant='outlined'
+                        required
+                        label='Email Address'
+                        type='email'
+                    />
+                    <TextField
+                        {...register('birthday')}
+                        variant='outlined'
+                        required
+                        label='Birthday'
+                        type='date'
                         sx={{
-                            width: '185px',
-                            [theme.breakpoints.down('tablet')]: {
-                                width: '49%'
-                            }
+                            label: {
+                                display: 'none'
+                            },
+                            '.css-12wo0e5-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                {
+                                    display: 'block'
+                                }
                         }}
                     />
                     <TextField
+                        {...register('password')}
                         variant='outlined'
                         required
-                        label='Last Name'
+                        label='Password'
+                        type='password'
+                    />
+                    <div className='invalid-feedback' style={{ color: 'red' }}>
+                        {errors.password?.message}
+                    </div>
+                    <TextField
+                        {...register('confirmPwd')}
+                        variant='outlined'
+                        required
+                        label='Confirm Password'
+                        type='password'
+                    />
+                    <div className='invalid-feedback' style={{ color: 'red' }}>
+                        {errors.confirmPwd?.message}
+                    </div>
+                    <Button
+                        variant='contained'
                         sx={{
-                            width: '185px',
                             [theme.breakpoints.down('tablet')]: {
-                                width: '49%'
+                                width: '90%'
                             }
                         }}
-                    />
-                </Box>
-                <TextField variant='outlined' required label='Username' />
-                <TextField variant='outlined' required label='Email Address' />
-                <TextField
-                    variant='outlined'
-                    required
-                    label='Birthdate'
-                    type='date'
-                    sx={{
-                        label: {
-                            display: 'none'
-                        }
-                    }}
-                />
-                <TextField variant='outlined' required label='Password' />
-                <TextField
-                    variant='outlined'
-                    required
-                    label='Confirm Password'
-                />
-                <Button
-                    variant='contained'
-                    sx={{
-                        [theme.breakpoints.down('tablet')]: {
-                            width: '90%'
-                        }
-                    }}
-                    onClick={() => console.log('dupa')}
-                >
-                    Sign Up
-                </Button>
+                        type='submit'
+                    >
+                        Sign Up
+                    </Button>
+                </form>
                 <Box
                     sx={{
                         display: 'flex',

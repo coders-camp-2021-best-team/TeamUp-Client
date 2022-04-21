@@ -1761,6 +1761,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^2.8.8":
+  version: 2.8.8
+  resolution: "@hookform/resolvers@npm:2.8.8"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 3de8b00ba3d085cd29b8d9d41bb17f5e31a483e46dafef98a37d898fbf5f3d19a74729e1cda8d15d7513486b5886ea12fbef0c1aa4ed009e3cf3c804cbe325a2
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.9.2":
   version: 0.9.5
   resolution: "@humanwhocodes/config-array@npm:0.9.5"
@@ -12081,6 +12090,7 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.8.2
     "@emotion/styled": ^11.8.1
+    "@hookform/resolvers": ^2.8.8
     "@mui/icons-material": ^5.5.1
     "@mui/material": ^5.5.2
     "@testing-library/jest-dom": ^5.14.1

@@ -43,22 +43,31 @@ export const ResetPassword = () => {
                 <Typography component='h1' variant='h4' color='common.white'>
                     Reset Password
                 </Typography>
-                <TextField variant='outlined' required label='New Password' />
-                <TextField
-                    variant='outlined'
-                    required
-                    label='Repeat Password'
-                />
-                <Button
-                    variant='contained'
-                    sx={{
-                        [theme.breakpoints.down('tablet')]: {
-                            width: '90%'
-                        }
-                    }}
-                >
-                    Save
-                </Button>
+                <form>
+                    <TextField
+                        variant='outlined'
+                        required
+                        label='New Password'
+                        type='password'
+                    />
+                    <TextField
+                        variant='outlined'
+                        required
+                        label='Repeat Password'
+                        type='password'
+                    />
+                    <Button
+                        variant='contained'
+                        sx={{
+                            [theme.breakpoints.down('tablet')]: {
+                                width: '90%'
+                            }
+                        }}
+                        type='submit'
+                    >
+                        Save
+                    </Button>
+                </form>
             </Box>
         </div>
     );

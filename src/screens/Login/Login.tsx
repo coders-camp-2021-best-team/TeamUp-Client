@@ -6,12 +6,41 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { NavLink } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import { useForm } from 'react-hook-form';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import { useLogin } from '../../Api/EndPoints/useLogin';
 import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
+import { toastNotify } from '../../utils/ToastNotify';
+import { LoginValues } from '../../utils/types/formValues';
 
 export const Login = () => {
+    const navigate = useNavigate();
+    const loginFunc = useLogin();
+
+    const { handleSubmit, register } = useForm<LoginValues>();
+    const onSubmit = (data: LoginValues) => {
+        loginFunc
+            .mutateAsync({
+                username: data.username,
+                password: data.password
+            })
+            .then((result) => {
+                if (data.rememberMe) {
+                    localStorage.setItem('Logged user', result.id);
+                }
+                navigate(ROUTES.PROFILE + '/' + result.id);
+            })
+            .catch((err: AxiosError) => {
+                if (err.code) {
+                    toastNotify(parseInt(err.code), err.message);
+                } else {
+                    toastNotify();
+                }
+            });
+    };
     return (
         <div
             style={{
@@ -68,35 +97,45 @@ export const Login = () => {
                 >
                     Sign in
                 </Typography>
-                <TextField
-                    variant='outlined'
-                    required
-                    label='Email Address'
-                    name='username'
-                />
-                <TextField
-                    variant='outlined'
-                    required
-                    label='Password'
-                    name='password'
-                />
-                <FormControlLabel
-                    label='Remember me'
-                    control={<Checkbox />}
-                    sx={{
-                        alignSelf: 'flex-start'
-                    }}
-                />
-                <Button
-                    variant='contained'
-                    sx={{
-                        [theme.breakpoints.down('tablet')]: {
-                            width: '90%'
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextField
+                        {...register('username')}
+                        variant='outlined'
+                        required
+                        label='Username'
+                    />
+                    <TextField
+                        {...register('password')}
+                        variant='outlined'
+                        required
+                        label='Password'
+                        type='password'
+                    />
+                    <FormControlLabel
+                        label='Remember me'
+                        control={
+                            <Checkbox
+                                {...register('rememberMe')}
+                                name='rememberMe'
+                            />
                         }
-                    }}
-                >
-                    Sign In
-                </Button>
+                        sx={{
+                            alignSelf: 'flex-start',
+                            width: '100%'
+                        }}
+                    />
+                    <Button
+                        variant='contained'
+                        sx={{
+                            [theme.breakpoints.down('tablet')]: {
+                                width: '90%'
+                            }
+                        }}
+                        type='submit'
+                    >
+                        Sign In
+                    </Button>
+                </form>
                 <Box
                     sx={{
                         display: 'flex',
