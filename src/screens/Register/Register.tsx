@@ -50,14 +50,7 @@ export const Register = () => {
             });
     };
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center'
-            }}
-        >
+        <div>
             <Box
                 sx={{
                     margin: '120px 20px 0',
@@ -146,6 +139,7 @@ export const Register = () => {
                                     display: 'block'
                                 }
                         }}
+                        {...register('firstName', { required: true })}
                     />
                     <TextField
                         {...register('password')}
@@ -188,7 +182,7 @@ export const Register = () => {
                     }}
                 >
                     <NavLink to={ROUTES.LOGIN}>
-                        Already have an account? Sing in
+                        Already have an account? Sign in
                     </NavLink>
                 </Box>
             </Box>

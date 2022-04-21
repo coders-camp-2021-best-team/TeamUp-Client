@@ -1,9 +1,8 @@
 import Lock from '@mui/icons-material/Lock';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { AxiosError } from 'axios';
@@ -42,14 +41,7 @@ export const Login = () => {
             });
     };
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center'
-            }}
-        >
+        <div>
             <Box
                 sx={{
                     margin: '120px 20px 0',
@@ -148,7 +140,7 @@ export const Login = () => {
                         Forgot password?
                     </NavLink>
                     <NavLink to={ROUTES.REGISTER}>
-                        Don't have an account? Sing up
+                        Don't have an account? Sign up
                     </NavLink>
                 </Box>
             </Box>
