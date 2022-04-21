@@ -2,42 +2,30 @@ import { MenuItem } from '@mui/material';
 import Link from '@mui/material/Link';
 import { NavLink } from 'react-router-dom';
 
-import { ROUTES } from '../../routes/Routes';
-
-type NavItem = {
-    src: string;
-    label: string;
-    to: string;
-};
+import { ROUTES } from '../routes/Routes';
 
 const NAV_ITEMS = [
     {
-        src: 'home',
         label: 'Home',
         to: ROUTES.HOME
     },
     {
-        src: 'profile',
         label: 'Profile',
-        to: ROUTES.PROFILE
+        to: `${ROUTES.PROFILE}/username`
     },
     {
-        src: 'feed',
         label: 'Feed',
         to: ROUTES.FEED
     },
     {
-        src: 'chat',
         label: 'Chat',
-        to: ROUTES.CHAT
+        to: `${ROUTES.CHAT}/id`
     },
     {
-        src: 'post',
-        label: 'Post',
-        to: ROUTES.POST
+        label: 'Posts',
+        to: ROUTES.POSTS
     },
     {
-        src: 'search',
         label: 'Search',
         to: ROUTES.SEARCH
     }
@@ -46,8 +34,8 @@ const NAV_ITEMS = [
 export const Navigation = () => {
     return (
         <>
-            {NAV_ITEMS.map((navItem: NavItem) => (
-                <MenuItem key={navItem.src}>
+            {NAV_ITEMS.map((navItem, idx) => (
+                <MenuItem key={idx}>
                     <Link
                         underline='hover'
                         variant='body1'
