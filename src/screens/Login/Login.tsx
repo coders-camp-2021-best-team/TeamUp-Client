@@ -13,9 +13,16 @@ import { ROUTES } from '../../routes/Routes';
 import { Login as LoginDTO } from '../../utils/types/apiTypes';
 
 export const Login = () => {
-    const { register, handleSubmit } = useForm<LoginDTO>();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<LoginDTO>();
     const login = useLogin();
     const navigate = useNavigate();
+
+    // TODO: FORM ERROR HANDLING
+    console.log(errors);
 
     return (
         <form

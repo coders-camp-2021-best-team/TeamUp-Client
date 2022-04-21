@@ -13,11 +13,16 @@ import { ROUTES } from '../../routes/Routes';
 import { Register as RegisterDTO } from '../../utils/types/apiTypes';
 
 export const Register = () => {
-    const { register, handleSubmit } = useForm<
-        RegisterDTO & { confirm_password: string }
-    >();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<RegisterDTO & { confirm_password: string }>();
     const registerHook = useRegister();
     const navigate = useNavigate();
+
+    // TODO: FORM ERROR HANDLING
+    console.log(errors);
 
     return (
         <form
