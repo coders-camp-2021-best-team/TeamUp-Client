@@ -1,9 +1,21 @@
 import SearchIcon from '@mui/icons-material/Search';
-import SortRoundedIcon from '@mui/icons-material/SortRounded';
-import { Fab, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
+import temp from 'lodash';
+
+const fetchSth = (searchPhrase: string) =>
+    axios.get(`https://rickandmortyapi.com/api/episode/${searchPhrase}`);
 
 export const Search = () => {
+    const handleOnChange = temp.debounce(
+        (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            const val = e.target.value;
+            fetchSth(val).then((resp) => console.log(resp.data));
+        },
+        3000
+    );
+
     return (
         <>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -23,6 +35,7 @@ export const Search = () => {
             >
                 <TextField
                     fullWidth
+                    onChange={handleOnChange}
                     label='Search'
                     id='Search'
                     sx={{ backgroundColor: '#B2A7FC' }}
@@ -31,24 +44,6 @@ export const Search = () => {
                     }}
                 />
             </Box>
-            <Fab
-                onClick={() => {
-                    // filters to choose from
-                    console.log('click');
-                }}
-                aria-label='filters'
-                sx={{
-                    width: '40px',
-                    height: '37.71px',
-                    marginLeft: '10px',
-                    backgroundColor: '#3415F7',
-                    '&:hover': {
-                        backgroundColor: '#6C56F9'
-                    }
-                }}
-            >
-                <SortRoundedIcon sx={{ fontSize: '32px', color: '#fff' }} />
-            </Fab>
         </>
     );
 };
