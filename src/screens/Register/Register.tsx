@@ -102,7 +102,7 @@ export const Register = () => {
                     }}
                 >
                     <NavLink to={ROUTES.LOGIN}>
-                        Already have an account? Sing in
+                        Already have an account? Sign in
                     </NavLink>
                 </Box>
             </Box>

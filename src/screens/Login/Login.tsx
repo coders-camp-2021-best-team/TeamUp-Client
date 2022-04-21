@@ -99,7 +99,7 @@ export const Login = () => {
                         Forgot password?
                     </NavLink>
                     <NavLink to={ROUTES.REGISTER}>
-                        Don't have an account? Sing up
+                        Don't have an account? Sign up
                     </NavLink>
                 </Box>
             </Box>
