@@ -4,20 +4,34 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { NavLink } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import { useRegister } from '../../Api/EndPoints/useRegister';
 import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
+import { Register as RegisterDTO } from '../../utils/types/apiTypes';
 
 export const Register = () => {
+    const { register, handleSubmit } = useForm<
+        RegisterDTO & { confirm_password: string }
+    >();
+    const registerHook = useRegister();
+    const navigate = useNavigate();
+
     return (
-        <div
+        <form
             style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 textAlign: 'center'
             }}
+            onSubmit={handleSubmit((data) =>
+                registerHook
+                    .mutateAsync(data)
+                    .then(() => navigate(ROUTES.LOGIN))
+            )}
         >
             <Box
                 sx={{
@@ -63,6 +77,7 @@ export const Register = () => {
                                 width: '49%'
                             }
                         }}
+                        {...register('first_name', { required: true })}
                     />
                     <TextField
                         variant='outlined'
@@ -74,20 +89,43 @@ export const Register = () => {
                                 width: '49%'
                             }
                         }}
+                        {...register('last_name', { required: true })}
                     />
                 </Box>
-                <TextField variant='outlined' required label='Email Address' />
-                <TextField variant='outlined' required label='Password' />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Username'
+                    {...register('username', { required: true, minLength: 3 })}
+                />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Email Address'
+                    type='email'
+                    {...register('email', { required: true })}
+                />
+                <TextField
+                    variant='outlined'
+                    required
+                    label='Password'
+                    type='password'
+                    {...register('password', { required: true, minLength: 8 })}
+                />
                 <TextField
                     variant='outlined'
                     required
                     label='Confirm Password'
+                    type='password'
+                    {...register('confirm_password', { required: true })}
                 />
+                {/* TODO: ADD VALIDATION FOR CONFIRM PASSWORD */}
                 <Button
                     variant='contained'
                     sx={{
                         width: '100%'
                     }}
+                    type='submit'
                 >
                     Sign In
                 </Button>
@@ -104,6 +142,6 @@ export const Register = () => {
                     </NavLink>
                 </Box>
             </Box>
-        </div>
+        </form>
     );
 };
