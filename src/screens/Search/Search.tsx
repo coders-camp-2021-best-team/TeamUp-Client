@@ -1,6 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
 import temp from 'lodash';
 
@@ -15,6 +16,57 @@ export const Search = () => {
         },
         3000
     );
+
+    const columns: GridColDef[] = [
+        { field: 'avatar', headerName: 'Avatar', width: 60 },
+        { field: 'name', headerName: 'First and last name', width: 150 },
+        { field: 'username', headerName: 'Username', width: 150 }
+    ];
+
+    const rows = [
+        {
+            id: 1,
+            avatar: 'img',
+            name: 'Jon Snow',
+            username: 'Johny'
+        },
+        {
+            id: 2,
+            avatar: 'img',
+            name: 'Dawid Kowalski',
+            username: 'Mały Jaś'
+        },
+        {
+            id: 3,
+            avatar: 'img',
+            name: 'Tom Nowak',
+            username: 'Ktoś bez coś'
+        },
+        {
+            id: 4,
+            avatar: 'img',
+            name: 'Mariusz Wiśniewski',
+            username: 'Awwwwwxd'
+        },
+        {
+            id: 5,
+            avatar: 'img',
+            name: 'Mariusz Wiśniewski',
+            username: 'Awwwwwxd'
+        },
+        {
+            id: 6,
+            avatar: 'img',
+            name: 'Mariusz Wiśniewski',
+            username: 'Awwwwwxd'
+        },
+        {
+            id: 7,
+            avatar: 'img',
+            name: 'Mariusz Wiśniewski',
+            username: 'Awwwwwxd'
+        }
+    ];
 
     return (
         <>
@@ -44,6 +96,18 @@ export const Search = () => {
                     }}
                 />
             </Box>
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    sx={{
+                        backgroundColor: '#B2A7FC',
+                        margin: '0 10px'
+                    }}
+                />
+            </div>
         </>
     );
 };
