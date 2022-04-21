@@ -1,26 +1,32 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
-import { Box, Box as Image, Fab, Typography } from '@mui/material';
+import { Box, Fab, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
+import { useFeed } from '../../Api/EndPoints/useFeed';
+import { useSwipe } from '../../Api/EndPoints/useSwipe';
+import { ROUTES } from '../../routes/Routes';
 import { getAge } from '../../utils';
+import { CDN } from '../../utils/CDN';
+import { UserSwipeType } from '../../utils/types/apiTypes';
 import { style } from './Feed.style';
-import { useFeedQuery } from './useFeed';
 
 export const Feed = () => {
-    const { data, isLoading } = useFeedQuery();
+    const navigate = useNavigate();
+    const feed = useFeed();
+    const swipe = useSwipe();
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
+    if (feed.isLoading || !feed.data || feed.data.recommendedUser === null)
+        return null;
 
     return (
         <>
             <Box sx={style.imageBox}>
-                <Image
+                <Box
                     component='img'
                     alt='Profile Picture'
-                    src={data?.avatar}
+                    src={CDN(feed.data.recommendedUser.avatar || '')}
                     width='100%'
                     maxWidth='425px'
                     padding='1rem'
@@ -28,10 +34,11 @@ export const Feed = () => {
                     sx={style.imageStyle}
                 />
                 <Fab
-                    onClick={() => {
-                        // go to profile screen
-                        console.log(data?.id);
-                    }}
+                    onClick={() =>
+                        navigate(
+                            `${ROUTES.PROFILE}/${feed.data.recommendedUser?.id}`
+                        )
+                    }
                     color='warning'
                     aria-label='info'
                     sx={style.profileButton}
@@ -45,34 +52,41 @@ export const Feed = () => {
                 margin='2vw 5.5vw'
                 color='white'
             >
-                {data?.first_name} {data?.last_name} -{' '}
-                {data?.birthdate ? getAge(data.birthdate) : ''}
+                {feed.data.recommendedUser.first_name}{' '}
+                {feed.data.recommendedUser.last_name} -{' '}
+                {getAge(feed.data.recommendedUser.birthdate)}
             </Typography>
             <Box sx={style.tagsBox}>
-                {data?.skills.map(({ id, level: { game } }) => (
-                    <Box key={id} sx={style.tagBox}>
-                        <Typography variant='body2'>{game.name}</Typography>
-                    </Box>
-                ))}
+                {feed.data.recommendedUser.skills.map(
+                    ({ id, level: { game } }) => (
+                        <Box key={id} sx={style.tagBox}>
+                            <Typography variant='body2'>{game.name}</Typography>
+                        </Box>
+                    )
+                )}
             </Box>
             <Box sx={style.swipeBox}>
                 <Fab
                     color='error'
                     aria-label='cancel'
-                    onClick={() => {
-                        // some BE mutation that use data.id
-                        console.log(data?.id);
-                    }}
+                    onClick={() =>
+                        swipe.mutate({
+                            id: feed.data.recommendedUser?.id || '',
+                            status: UserSwipeType.DISLIKE
+                        })
+                    }
                 >
                     <CloseRoundedIcon sx={style.swipeButton} />
                 </Fab>
                 <Fab
                     color='success'
                     aria-label='approve'
-                    onClick={() => {
-                        // approve and go to next id
-                        console.log(data?.id);
-                    }}
+                    onClick={() =>
+                        swipe.mutate({
+                            id: feed.data.recommendedUser?.id || '',
+                            status: UserSwipeType.LIKE
+                        })
+                    }
                 >
                     <SportsEsportsRoundedIcon sx={style.swipeButton} />
                 </Fab>
