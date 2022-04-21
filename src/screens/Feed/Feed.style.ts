@@ -2,18 +2,22 @@ export const style = {
     imageBox: {
         display: 'grid',
         justifyItems: 'center',
-        position: 'relative'
+        position: 'relative',
+        padding: '15px 15px 0 15px'
     },
     imageStyle: {
-        borderRadius: '6px'
+        borderRadius: '6px',
+        display: 'block',
+        width: '100%',
+        objectFit: 'cover'
     },
     profileButton: {
         width: '46px',
         height: '46px',
         position: 'absolute',
-        top: '92%',
+        top: '100%',
         left: '50%',
-        transform: 'translateX(-50%)'
+        transform: 'translate(-50%, -50%)'
     },
     tagsBox: { display: 'flex', flexWrap: 'wrap', margin: '0 2vh' },
     tagBox: {

@@ -23,8 +23,7 @@ export const Feed = () => {
                     src={data?.avatar}
                     width='100%'
                     maxWidth='425px'
-                    padding='1rem'
-                    height='60vh'
+                    height='500px'
                     sx={style.imageStyle}
                 />
                 <Fab

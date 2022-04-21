@@ -8,6 +8,7 @@ export const useFeedQuery = () => {
     const getFeed = () => request.get<User>('/feed').then((resp) => resp.data);
 
     return useQuery(['user'], getFeed, {
-        onError: () => toastNotify(undefined, 'Uuuup something went wrong!')
+        onError: () => toastNotify(undefined, 'Uuuup something went wrong!'),
+        refetchOnWindowFocus: false
     });
 };
