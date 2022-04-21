@@ -86,9 +86,7 @@ export const Register = () => {
                 <Button
                     variant='contained'
                     sx={{
-                        [theme.breakpoints.down('tablet')]: {
-                            width: '90%'
-                        }
+                        width: '100%'
                     }}
                 >
                     Sign In

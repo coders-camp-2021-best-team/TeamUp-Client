@@ -52,9 +52,7 @@ export const ResetPassword = () => {
                 <Button
                     variant='contained'
                     sx={{
-                        [theme.breakpoints.down('tablet')]: {
-                            width: '90%'
-                        }
+                        width: '100%'
                     }}
                 >
                     Save
