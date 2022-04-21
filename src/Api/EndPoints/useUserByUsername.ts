@@ -6,11 +6,11 @@ import { toastNotify } from '../../utils/ToastNotify';
 import { User } from '../../utils/types/apiTypes';
 import { AuthService } from '../client/AuthService';
 
-export const useUser = (id = '@me') => {
+export const useUserByUsername = (username: string) => {
     return useQuery<User>(
-        id === '@me' ? 'current_user' : ['user', 'id', id],
+        ['user', 'username', username],
         async () => {
-            return (await AuthService.userByID(id)).data;
+            return (await AuthService.userByUsername(username)).data;
         },
         {
             retry: false,
