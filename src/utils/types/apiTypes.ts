@@ -4,7 +4,7 @@ export type Login = {
 };
 
 export type Feed = {
-    recommendedUser: User;
+    recommendedUser: User | null;
 
     createdOn: string;
 };
@@ -115,3 +115,15 @@ export enum PostVoteType {
     UPVOTE = 'UPVOTE',
     DOWNVOTE = 'DOWNVOTE'
 }
+
+export enum UserSwipeType {
+    LIKE = 'LIKE',
+    DISLIKE = 'DISLIKE'
+}
+
+export type UserSwipe = {
+    id: string;
+    target: User;
+    status: UserSwipeType;
+    updatedOn: string;
+};

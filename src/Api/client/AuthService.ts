@@ -1,5 +1,6 @@
 import { request } from '../../Axios/Axios';
 import {
+    Feed,
     Login,
     Post,
     PostAttachment,
@@ -8,7 +9,9 @@ import {
     PostVoteType,
     QueryPostDto,
     Register,
-    User
+    User,
+    UserSwipe,
+    UserSwipeType
 } from '../../utils/types/apiTypes';
 
 export const AuthService = {
@@ -27,5 +30,11 @@ export const AuthService = {
     postVotes: (id: string) => request.get<PostVotes>(`/post/${id}/vote`),
     postVote: (id: string, type: PostVoteType) =>
         request.post<PostVote>(`/post/${id}/vote`, { type }),
-    postRemoveVote: (id: string) => request.delete<PostVote>(`/post/${id}/vote`)
+    postRemoveVote: (id: string) =>
+        request.delete<PostVote>(`/post/${id}/vote`),
+
+    getFeed: () => request.get<Feed>('/feed'),
+
+    postSwipe: (id: string, status: UserSwipeType) =>
+        request.post<UserSwipe>(`/swipe/${id}`, { status })
 };
