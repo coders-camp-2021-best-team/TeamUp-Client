@@ -15,6 +15,7 @@ import {
     Posts,
     Profile,
     Register,
+    RequestPasswordReset,
     ResetPassword,
     Search
 } from './screens';
@@ -39,7 +40,12 @@ export const Router = () => {
                     <Route path={ROUTES.REGISTER} element={<Register />} />
 
                     <Route
-                        path={ROUTES.RESET_PASSWORD}
+                        path={ROUTES.REQUEST_PASSWORD_RESET}
+                        element={<RequestPasswordReset />}
+                    />
+
+                    <Route
+                        path={`${ROUTES.RESET_PASSWORD}/:token`}
                         element={<ResetPassword />}
                     />
 

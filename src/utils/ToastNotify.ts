@@ -28,7 +28,7 @@ export const toastNotify = (
     const statusGroup = Math.floor(status / 100);
 
     if (statusGroup === 2) {
-        toast.info(text, succesStyles);
+        toast.success(text, succesStyles);
     } else if (statusGroup === 4 || statusGroup === 5) {
         toast.error(text, errorStyles);
     } else {

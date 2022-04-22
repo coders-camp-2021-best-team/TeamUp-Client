@@ -9,5 +9,6 @@ export * from './Logout';
 export * from './Posts';
 export * from './Profile';
 export * from './Register';
+export * from './RequestPasswordReset';
 export * from './ResetPassword';
 export * from './Search';

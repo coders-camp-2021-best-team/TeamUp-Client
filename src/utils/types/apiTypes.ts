@@ -127,3 +127,12 @@ export type UserSwipe = {
     status: UserSwipeType;
     updatedOn: string;
 };
+
+export type RequestPasswordReset = {
+    email: string;
+};
+
+export type ResetPassword = {
+    password: string;
+    confirm_password: string;
+};

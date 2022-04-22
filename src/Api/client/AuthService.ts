@@ -9,6 +9,7 @@ import {
     PostVoteType,
     QueryPostDto,
     Register,
+    ResetPassword,
     User,
     UserSwipe,
     UserSwipeType
@@ -25,6 +26,11 @@ export const AuthService = {
     userByID: (id: string) => request.get<User>(`/user/${id}`),
     userByUsername: (username: string) =>
         request.get<User>(`/user/by-username/${username}`),
+
+    requestPasswordReset: (email: string) =>
+        request.post('/auth/request-password-reset', { email }),
+    passwordReset: (token: string, data: ResetPassword) =>
+        request.post(`/auth/password-reset/${token}`, data),
 
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>
