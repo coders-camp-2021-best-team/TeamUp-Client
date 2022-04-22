@@ -2,26 +2,15 @@ import Lock from '@mui/icons-material/Lock';
 import { Avatar, Box, Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-import { useForgotPassword } from '../../Api/EndPoints/useForgotPassword';
+import { useRequestPasswordReset } from '../../Api/EndPoints/useRequestPasswordReset';
 import { theme } from '../../config/theme';
 import { toastNotify } from '../../utils/ToastNotify';
-import { ForgotPasswordValues } from '../../utils/types/formValues';
+import { RequestPasswordReset as RequestPasswordResetDTO } from '../../utils/types/apiTypes';
 
-export const ForgotPassword = () => {
-    const { handleSubmit, register } = useForm<ForgotPasswordValues>();
-    const forgotPassword = useForgotPassword();
-    const onSubmit = (data: ForgotPasswordValues) => {
-        forgotPassword
-            .mutateAsync({
-                email: data.email
-            })
-            .then(() => {
-                toastNotify(200, 'Email sended');
-            })
-            .catch(() => {
-                toastNotify(400, 'Something went wrong');
-            });
-    };
+export const RequestPasswordReset = () => {
+    const { handleSubmit, register } = useForm<RequestPasswordResetDTO>();
+    const requestPasswordReset = useRequestPasswordReset();
+
     return (
         <div
             style={{
@@ -66,6 +55,7 @@ export const ForgotPassword = () => {
                         }}
                     />
                 </Avatar>
+
                 <Typography
                     component='h1'
                     variant='h4'
@@ -78,9 +68,19 @@ export const ForgotPassword = () => {
                 >
                     Forgot Password?
                 </Typography>
+
                 <form
                     style={{ width: '100%' }}
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit((data) =>
+                        requestPasswordReset
+                            .mutateAsync(data.email)
+                            .then(() => {
+                                toastNotify(
+                                    200,
+                                    'Check your email and click the received link.'
+                                );
+                            })
+                    )}
                 >
                     <TextField
                         {...register('email')}
@@ -92,13 +92,11 @@ export const ForgotPassword = () => {
                     <Button
                         variant='contained'
                         sx={{
-                            [theme.breakpoints.down('tablet')]: {
-                                width: '90%'
-                            }
+                            width: '100%'
                         }}
                         type='submit'
                     >
-                        Send email
+                        Send Email
                     </Button>
                 </form>
             </Box>

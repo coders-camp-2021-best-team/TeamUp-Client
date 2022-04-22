@@ -1,45 +1,28 @@
 import Lock from '@mui/icons-material/Lock';
-import { Checkbox, FormControlLabel } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useLogin } from '../../Api/EndPoints/useLogin';
 import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
-import { toastNotify } from '../../utils/ToastNotify';
-import { LoginValues } from '../../utils/types/formValues';
+import { Login as LoginDTO } from '../../utils/types/apiTypes';
 
 export const Login = () => {
     const navigate = useNavigate();
     const loginFunc = useLogin();
 
-    const { handleSubmit, register } = useForm<LoginValues>();
-    const onSubmit = (data: LoginValues) => {
-        loginFunc
-            .mutateAsync({
-                username: data.username,
-                password: data.password
-            })
-            .then((result) => {
-                if (data.rememberMe) {
-                    localStorage.setItem('Logged user', result.id);
-                }
-                navigate(ROUTES.PROFILE + '/' + result.id);
-            })
-            .catch((err: AxiosError) => {
-                if (err.code) {
-                    toastNotify(parseInt(err.code), err.message);
-                } else {
-                    toastNotify();
-                }
-            });
-    };
+    const {
+        handleSubmit,
+        register,
+        setError,
+        formState: { errors }
+    } = useForm<LoginDTO>();
+
     return (
         <div
             style={{
@@ -84,6 +67,7 @@ export const Login = () => {
                         }}
                     />
                 </Avatar>
+
                 <Typography
                     component='h1'
                     variant='h4'
@@ -96,12 +80,27 @@ export const Login = () => {
                 >
                     Sign in
                 </Typography>
-                <form onSubmit={handleSubmit(onSubmit)}>
+
+                <form
+                    onSubmit={handleSubmit((data) =>
+                        loginFunc
+                            .mutateAsync(data)
+                            .then((result) =>
+                                navigate(`${ROUTES.PROFILE}/${result.username}`)
+                            )
+                            .catch(() =>
+                                setError('password', {
+                                    message: 'Invalid username or password.'
+                                })
+                            )
+                    )}
+                >
                     <TextField
                         {...register('username')}
                         variant='outlined'
                         required
                         label='Username'
+                        autoComplete='username'
                     />
                     <TextField
                         {...register('password')}
@@ -109,32 +108,22 @@ export const Login = () => {
                         required
                         label='Password'
                         type='password'
+                        autoComplete='current-password'
                     />
-                    <FormControlLabel
-                        label='Remember me'
-                        control={
-                            <Checkbox
-                                {...register('rememberMe')}
-                                name='rememberMe'
-                            />
-                        }
-                        sx={{
-                            alignSelf: 'flex-start',
-                            width: '100%'
-                        }}
-                    />
+                    <div className='invalid-feedback' style={{ color: 'red' }}>
+                        {errors.password?.message}
+                    </div>
                     <Button
                         variant='contained'
                         sx={{
-                            [theme.breakpoints.down('tablet')]: {
-                                width: '90%'
-                            }
+                            width: '100%'
                         }}
                         type='submit'
                     >
                         Sign In
                     </Button>
                 </form>
+
                 <Box
                     sx={{
                         display: 'flex',
@@ -143,7 +132,7 @@ export const Login = () => {
                         marginTop: '2rem'
                     }}
                 >
-                    <NavLink to={ROUTES.FORGOT_PASSWORD}>
+                    <NavLink to={ROUTES.REQUEST_PASSWORD_RESET}>
                         Forgot password?
                     </NavLink>
                     <NavLink to={ROUTES.REGISTER}>

@@ -6,30 +6,38 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
+import { usePasswordReset } from '../../Api/EndPoints/usePasswordReset';
 import { theme } from '../../config/theme';
-import { ResetPasswordValues } from '../../utils/types/formValues';
+import { ROUTES } from '../../routes/Routes';
+import { toastNotify } from '../../utils/ToastNotify';
+import { ResetPassword as ResetPasswordDTO } from '../../utils/types/apiTypes';
 
 export const ResetPassword = () => {
-    const { id } = useParams();
-    const formSchema = Yup.object().shape({
-        password: Yup.string()
-            .required('Password is mendatory')
-            .min(8, 'Password must be at 8 char long'),
-        confirmPwd: Yup.string()
-            .required('Password is mendatory')
-            .oneOf([Yup.ref('password')], 'Passwords does not match')
+    const { token } = useParams();
+
+    const {
+        handleSubmit,
+        register,
+        formState: { errors }
+    } = useForm<ResetPasswordDTO>({
+        resolver: yupResolver(
+            Yup.object().shape({
+                password: Yup.string()
+                    .required()
+                    .min(8, 'Password must be at least 8 characters long.'),
+                confirm_password: Yup.string().oneOf(
+                    [Yup.ref('password')],
+                    "Passwords don't match."
+                )
+            })
+        )
     });
-    const formOptions = { resolver: yupResolver(formSchema) };
-    const { handleSubmit, register, formState } =
-        useForm<ResetPasswordValues>(formOptions);
-    const { errors } = formState;
-    const onSubmit = (data: ResetPasswordValues) => {
-        console.log(data); //TODO: Connect with API
-        console.log(id);
-    };
+    const passwordReset = usePasswordReset(token || '');
+    const navigate = useNavigate();
+
     return (
         <div
             style={{
@@ -62,12 +70,22 @@ export const ResetPassword = () => {
                 >
                     <Lock sx={{ fontSize: '48px', color: 'common.white' }} />
                 </Avatar>
+
                 <Typography component='h1' variant='h4' color='common.white'>
                     Reset Password
                 </Typography>
+
                 <form
                     style={{ width: '100%' }}
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit((data) => {
+                        passwordReset.mutateAsync(data).then(() => {
+                            navigate(ROUTES.LOGIN);
+                            toastNotify(
+                                200,
+                                'Password has been successfully changed.'
+                            );
+                        });
+                    })}
                 >
                     <TextField
                         {...register('password')}
@@ -75,30 +93,32 @@ export const ResetPassword = () => {
                         required
                         label='New Password'
                         type='password'
+                        autoComplete='new-password'
                     />
                     <div className='invalid-feedback' style={{ color: 'red' }}>
                         {errors.password?.message}
                     </div>
+
                     <TextField
-                        {...register('confirmPwd')}
+                        {...register('confirm_password')}
                         variant='outlined'
                         required
                         label='Repeat Password'
                         type='password'
+                        autoComplete='new-password'
                     />
                     <div className='invalid-feedback' style={{ color: 'red' }}>
-                        {errors.confirmPwd?.message}
+                        {errors.confirm_password?.message}
                     </div>
+
                     <Button
                         variant='contained'
                         sx={{
-                            [theme.breakpoints.down('tablet')]: {
-                                width: '90%'
-                            }
+                            width: '100%'
                         }}
                         type='submit'
                     >
-                        Save
+                        Change Password
                     </Button>
                 </form>
             </Box>
