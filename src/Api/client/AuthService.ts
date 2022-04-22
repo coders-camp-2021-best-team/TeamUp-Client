@@ -22,7 +22,9 @@ export const AuthService = {
     register: (register: Register) =>
         request.post<Register>('/auth/register', register),
 
-    user: (id: string) => request.get<User>(`/user/${id}`),
+    userByID: (id: string) => request.get<User>(`/user/${id}`),
+    userByUsername: (username: string) =>
+        request.get<User>(`/user/by-username/${username}`),
 
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>

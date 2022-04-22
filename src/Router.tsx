@@ -65,7 +65,7 @@ export const Router = () => {
                     <Route path={ROUTES.POSTS} element={<Posts />} />
 
                     <Route
-                        path={`${ROUTES.PROFILE}/:id`}
+                        path={`${ROUTES.PROFILE}/:username`}
                         element={<Profile />}
                     />
 
