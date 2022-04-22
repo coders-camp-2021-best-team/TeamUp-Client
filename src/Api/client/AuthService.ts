@@ -1,7 +1,6 @@
 import { request } from '../../Axios/Axios';
 import {
     Feed,
-    ForgotPassword,
     Login,
     Post,
     PostAttachment,
@@ -10,6 +9,7 @@ import {
     PostVoteType,
     QueryPostDto,
     Register,
+    ResetPassword,
     User,
     UserSwipe,
     UserSwipeType
@@ -27,8 +27,10 @@ export const AuthService = {
     userByUsername: (username: string) =>
         request.get<User>(`/user/by-username/${username}`),
 
-    forgotPassword: (forgotPassword: ForgotPassword) =>
-        request.post('/auth/request-password-reset', forgotPassword),
+    requestPasswordReset: (email: string) =>
+        request.post('/auth/request-password-reset', { email }),
+    passwordReset: (token: string, data: ResetPassword) =>
+        request.post(`/auth/password-reset/${token}`, data),
 
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>

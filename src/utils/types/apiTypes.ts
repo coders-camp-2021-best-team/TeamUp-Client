@@ -128,6 +128,11 @@ export type UserSwipe = {
     updatedOn: string;
 };
 
-export type ForgotPassword = {
+export type RequestPasswordReset = {
     email: string;
+};
+
+export type ResetPassword = {
+    password: string;
+    confirm_password: string;
 };
