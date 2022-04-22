@@ -1,6 +1,6 @@
+export * from './ActivateAccount';
 export * from './Base';
 export * from './Chat';
-export * from './EmailConfirmation';
 export * from './Error';
 export * from './Feed';
 export * from './Home';

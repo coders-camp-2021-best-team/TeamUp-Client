@@ -4,9 +4,9 @@ import { ProtectedRoute } from './components';
 import { LoggedOutRoute } from './components/LoggedOutRoute';
 import { ROUTES } from './routes/Routes';
 import {
+    ActivateAccount,
     BaseScreen,
     Chat,
-    EmailConfirmation,
     Feed,
     Home,
     Login,
@@ -50,8 +50,8 @@ export const Router = () => {
                     />
 
                     <Route
-                        path={ROUTES.CONFIRMATION_EMAIL}
-                        element={<EmailConfirmation />}
+                        path={`${ROUTES.ACTIVATE_ACCOUNT}/:token`}
+                        element={<ActivateAccount />}
                     />
                 </Route>
 
