@@ -24,7 +24,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<BaseScreen />}>
+                <Route>
                     <Route path={ROUTES.HOME} element={<Home />} />
                 </Route>
 
