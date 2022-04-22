@@ -5,9 +5,9 @@ export const ROUTES = {
     // LOGGED OUT ROUTES
     LOGIN: '/login',
     REGISTER: '/register',
+    REQUEST_PASSWORD_RESET: '/request-password-reset',
     RESET_PASSWORD: '/reset-password',
     CONFIRMATION_EMAIL: '/confirmation-email',
-    FORGOT_PASSWORD: '/forgot-password',
 
     // PROTECTED ROUTES
     LOGOUT: '/logout',

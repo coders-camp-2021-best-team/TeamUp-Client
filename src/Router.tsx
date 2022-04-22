@@ -8,7 +8,6 @@ import {
     Chat,
     EmailConfirmation,
     Feed,
-    ForgotPassword,
     Home,
     Login,
     Logout,
@@ -16,6 +15,7 @@ import {
     Posts,
     Profile,
     Register,
+    RequestPasswordReset,
     ResetPassword,
     Search
 } from './screens';
@@ -40,13 +40,13 @@ export const Router = () => {
                     <Route path={ROUTES.REGISTER} element={<Register />} />
 
                     <Route
-                        path={`${ROUTES.RESET_PASSWORD}/:id`}
-                        element={<ResetPassword />}
+                        path={ROUTES.REQUEST_PASSWORD_RESET}
+                        element={<RequestPasswordReset />}
                     />
 
                     <Route
-                        path={ROUTES.FORGOT_PASSWORD}
-                        element={<ForgotPassword />}
+                        path={`${ROUTES.RESET_PASSWORD}/:token`}
+                        element={<ResetPassword />}
                     />
 
                     <Route
