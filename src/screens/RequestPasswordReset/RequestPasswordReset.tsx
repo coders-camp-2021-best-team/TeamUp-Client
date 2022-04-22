@@ -1,15 +1,18 @@
 import Lock from '@mui/icons-material/Lock';
 import { Avatar, Box, Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { useRequestPasswordReset } from '../../Api/EndPoints/useRequestPasswordReset';
 import { theme } from '../../config/theme';
+import { ROUTES } from '../../routes/Routes';
 import { toastNotify } from '../../utils/ToastNotify';
 import { RequestPasswordReset as RequestPasswordResetDTO } from '../../utils/types/apiTypes';
 
 export const RequestPasswordReset = () => {
     const { handleSubmit, register } = useForm<RequestPasswordResetDTO>();
     const requestPasswordReset = useRequestPasswordReset();
+    const navigate = useNavigate();
 
     return (
         <div
@@ -75,6 +78,7 @@ export const RequestPasswordReset = () => {
                         requestPasswordReset
                             .mutateAsync(data.email)
                             .then(() => {
+                                navigate(ROUTES.HOME);
                                 toastNotify(
                                     200,
                                     'Check your email and click the received link.'
