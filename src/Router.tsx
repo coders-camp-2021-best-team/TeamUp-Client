@@ -8,6 +8,7 @@ import {
     Chat,
     EmailConfirmation,
     Feed,
+    ForgotPassword,
     Home,
     Login,
     Logout,
@@ -39,8 +40,13 @@ export const Router = () => {
                     <Route path={ROUTES.REGISTER} element={<Register />} />
 
                     <Route
-                        path={ROUTES.RESET_PASSWORD}
+                        path={`${ROUTES.RESET_PASSWORD}/:id`}
                         element={<ResetPassword />}
+                    />
+
+                    <Route
+                        path={ROUTES.FORGOT_PASSWORD}
+                        element={<ForgotPassword />}
                     />
 
                     <Route

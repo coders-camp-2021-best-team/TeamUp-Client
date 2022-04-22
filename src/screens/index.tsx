@@ -3,6 +3,7 @@ export * from './Chat';
 export * from './EmailConfirmation';
 export * from './Error';
 export * from './Feed';
+export * from './ForgotPassword';
 export * from './Home';
 export * from './Login';
 export * from './Logout';

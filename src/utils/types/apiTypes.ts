@@ -115,3 +115,7 @@ export enum PostVoteType {
     UPVOTE = 'UPVOTE',
     DOWNVOTE = 'DOWNVOTE'
 }
+
+export type ForgotPassword = {
+    email: string;
+};
