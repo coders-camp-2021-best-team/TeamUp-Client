@@ -51,7 +51,7 @@ export const Login = () => {
         >
             <Box
                 sx={{
-                    margin: '120px 20px 0',
+                    margin: '120px 0 0',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -143,7 +143,7 @@ export const Login = () => {
                         marginTop: '2rem'
                     }}
                 >
-                    <NavLink to={ROUTES.RESET_PASSWORD}>
+                    <NavLink to={ROUTES.FORGOT_PASSWORD}>
                         Forgot password?
                     </NavLink>
                     <NavLink to={ROUTES.REGISTER}>

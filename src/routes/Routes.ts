@@ -7,6 +7,7 @@ export const ROUTES = {
     REGISTER: '/register',
     RESET_PASSWORD: '/reset-password',
     CONFIRMATION_EMAIL: '/confirmation-email',
+    FORGOT_PASSWORD: '/forgot-password',
 
     // PROTECTED ROUTES
     LOGOUT: '/logout',

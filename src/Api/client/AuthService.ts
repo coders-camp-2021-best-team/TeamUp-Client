@@ -1,6 +1,7 @@
 import { request } from '../../Axios/Axios';
 import {
     Feed,
+    ForgotPassword,
     Login,
     Post,
     PostAttachment,
@@ -25,6 +26,9 @@ export const AuthService = {
     userByID: (id: string) => request.get<User>(`/user/${id}`),
     userByUsername: (username: string) =>
         request.get<User>(`/user/by-username/${username}`),
+
+    forgotPassword: (forgotPassword: ForgotPassword) =>
+        request.post('/auth/request-password-reset', forgotPassword),
 
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>

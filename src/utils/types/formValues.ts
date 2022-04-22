@@ -12,3 +12,10 @@ export type LoginValues = {
     password: string;
     rememberMe: boolean;
 };
+export type ForgotPasswordValues = {
+    email: string;
+};
+export type ResetPasswordValues = {
+    password: string;
+    confirmPwd: string;
+};
