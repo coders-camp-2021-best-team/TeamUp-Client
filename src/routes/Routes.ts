@@ -15,6 +15,7 @@ export const ROUTES = {
     FEED: '/feed',
     POSTS: '/posts',
     PROFILE: '/profile',
+    EDITPROFILE: '/editprofile',
     SEARCH: '/search',
 
     // ERROR ROUTES
