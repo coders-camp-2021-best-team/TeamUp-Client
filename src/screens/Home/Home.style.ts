@@ -15,7 +15,8 @@ export const style = {
     fabLogo: {
         width: '60px',
         height: '60px',
-        marginLeft: '20px'
+        marginLeft: '20px',
+        cursor: 'unset'
     },
     firstTypography: {
         textAlign: 'center',
