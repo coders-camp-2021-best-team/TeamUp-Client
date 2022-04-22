@@ -15,3 +15,7 @@ export type LoginValues = {
 export type ForgotPasswordValues = {
     email: string;
 };
+export type ResetPasswordValues = {
+    password: string;
+    confirmPwd: string;
+};
