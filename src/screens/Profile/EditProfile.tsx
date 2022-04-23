@@ -1,15 +1,34 @@
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
+import SyncIcon from '@mui/icons-material/Sync';
 import { Box, Fab, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { ROUTES } from '../../routes/Routes';
 
 export const EditProfile = () => {
     const content = [1, 2, 3];
 
     const handleDelete = () => {
         console.info('You clicked the delete icon.');
+    };
+
+    const [process, setProcess] = useState({
+        icon: <SaveRoundedIcon />,
+        label: 'Save'
+    });
+
+    const handleClick = () => {
+        setProcess({ icon: <SyncIcon />, label: 'Loading' });
+        setTimeout(() => {
+            setProcess({ icon: <DoneRoundedIcon />, label: 'Saved!' });
+        }, 3000);
     };
 
     return (
@@ -21,11 +40,19 @@ export const EditProfile = () => {
                     margin: '10px 10px 0'
                 }}
             >
-                <Button variant='contained' size='small'>
-                    BACK
-                </Button>
-                <Button variant='contained' size='small' color='success'>
-                    SAVE
+                <NavLink to={ROUTES.PROFILE} style={{ textDecoration: 'none' }}>
+                    <Button variant='contained' size='small'>
+                        BACK
+                    </Button>
+                </NavLink>
+                <Button
+                    variant='contained'
+                    size='small'
+                    color='success'
+                    startIcon={process.icon}
+                    onClick={handleClick}
+                >
+                    {process.label}
                 </Button>
             </Box>
             <Box
