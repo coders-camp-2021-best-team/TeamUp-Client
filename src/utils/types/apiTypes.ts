@@ -136,3 +136,9 @@ export type ResetPassword = {
     password: string;
     confirm_password: string;
 };
+
+export type CreatePost = {
+    title: string;
+    body: string;
+    categories: string[];
+};
