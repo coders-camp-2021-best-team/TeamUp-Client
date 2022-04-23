@@ -52,5 +52,7 @@ export const AuthService = {
         const formData = new FormData();
         formData.append('attachment', file);
         return request.post<PostAttachment>(`/post/${id}/attachment`, formData);
-    }
+    },
+
+    activateAccount: (token: string) => request.get(`/auth/activate/${token}`)
 };
