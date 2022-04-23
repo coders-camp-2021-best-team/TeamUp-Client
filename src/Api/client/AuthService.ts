@@ -44,5 +44,7 @@ export const AuthService = {
     getFeed: () => request.get<Feed>('/feed'),
 
     postSwipe: (id: string, status: UserSwipeType) =>
-        request.post<UserSwipe>(`/swipe/${id}`, { status })
+        request.post<UserSwipe>(`/swipe/${id}`, { status }),
+
+    activateAccount: (token: string) => request.get(`/auth/activate/${token}`)
 };
