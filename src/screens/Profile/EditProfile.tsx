@@ -1,11 +1,12 @@
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { Box, Fab, Grid } from '@mui/material';
+import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 
 export const EditProfile = () => {
-    const content = [1, 2, 3, 4, 5, 6];
+    const content = [1, 2, 3];
 
     const handleDelete = () => {
         console.info('You clicked the delete icon.');
@@ -15,10 +16,24 @@ export const EditProfile = () => {
         <>
             <Box
                 sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    margin: '10px 10px 0'
+                }}
+            >
+                <Button variant='contained' size='small'>
+                    BACK
+                </Button>
+                <Button variant='contained' size='small' color='success'>
+                    SAVE
+                </Button>
+            </Box>
+            <Box
+                sx={{
                     display: 'grid',
                     justifyItems: 'center',
                     position: 'relative',
-                    padding: '15px 15px 0 15px'
+                    padding: '5px 15px 0'
                 }}
             >
                 <Box
@@ -44,9 +59,10 @@ export const EditProfile = () => {
                         height: '30px',
                         minHeight: '30px',
                         position: 'absolute',
-                        top: '100%',
+                        top: '90%',
                         left: '50%',
-                        transform: 'translate(-50%, -50%)'
+                        transform: 'translate(-50%, -50%)',
+                        marginLeft: '60px'
                     }}
                 >
                     <EditRoundedIcon sx={{ fontSize: '20px' }} />
@@ -81,18 +97,24 @@ export const EditProfile = () => {
                     }}
                 />
                 <TextField
-                    id='birthday-basic'
-                    label='Birthday'
                     variant='outlined'
+                    label='Birthdate'
+                    type='date'
                     sx={{
-                        '& label.Mui-focused': { color: '#fff' },
-                        margin: '10px 0'
+                        label: {
+                            display: 'none'
+                        },
+                        '& label.Mui-focused': {
+                            display: 'block',
+                            color: '#fff'
+                        }
                     }}
                 />
                 <TextField
                     id='biogram-basic'
                     label='Biogram'
-                    variant='outlined'
+                    multiline
+                    rows={3}
                     sx={{
                         '& label.Mui-focused': { color: '#fff' },
                         margin: '10px 0'
