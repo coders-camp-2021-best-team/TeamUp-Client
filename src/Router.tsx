@@ -6,6 +6,7 @@ import { ROUTES } from './routes/Routes';
 import {
     BaseScreen,
     Chat,
+    CreatePost,
     EmailConfirmation,
     Feed,
     Home,
@@ -69,6 +70,8 @@ export const Router = () => {
                     <Route path={ROUTES.FEED} element={<Feed />} />
 
                     <Route path={ROUTES.POSTS} element={<Posts />} />
+
+                    <Route path={ROUTES.CREATE_POST} element={<CreatePost />} />
 
                     <Route
                         path={`${ROUTES.PROFILE}/:username`}
