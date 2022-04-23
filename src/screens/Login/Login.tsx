@@ -85,9 +85,7 @@ export const Login = () => {
                     onSubmit={handleSubmit((data) =>
                         loginFunc
                             .mutateAsync(data)
-                            .then((result) =>
-                                navigate(`${ROUTES.PROFILE}/${result.username}`)
-                            )
+                            .then(() => navigate(`${ROUTES.FEED}`))
                             .catch(() =>
                                 setError('password', {
                                     message: 'Invalid username or password.'
