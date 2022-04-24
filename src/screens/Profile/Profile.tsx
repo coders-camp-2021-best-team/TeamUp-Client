@@ -7,12 +7,6 @@ import { UserProfileDescription } from '../../components';
 import { ROUTES } from '../../routes/Routes';
 import { CDN } from '../../utils/CDN';
 
-const isAvatarValid = (avatarUrl: string | undefined | null) => {
-    return (
-        avatarUrl !== null && avatarUrl !== undefined && avatarUrl.trim() !== ''
-    );
-};
-
 export const Profile = () => {
     const { username } = useParams();
     const user = useUserByUsername(username || '');
@@ -21,9 +15,7 @@ export const Profile = () => {
 
     if (!user.data) return <Navigate to={ROUTES.NOT_FOUND} replace />;
 
-    const avatarSrc = isAvatarValid(user.data.avatar)
-        ? CDN(user.data.avatar as string)
-        : DEFAULT_AVATAR;
+    const avatarSrc = user.data.avatar ? CDN(user.data.avatar) : DEFAULT_AVATAR;
 
     return (
         <>
