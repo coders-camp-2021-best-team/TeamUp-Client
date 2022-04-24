@@ -1,5 +1,6 @@
 import { request } from '../../Axios/Axios';
 import {
+    CreatePost,
     Feed,
     Login,
     Post,
@@ -45,6 +46,13 @@ export const AuthService = {
 
     postSwipe: (id: string, status: UserSwipeType) =>
         request.post<UserSwipe>(`/swipe/${id}`, { status }),
+
+    createPost: (data: CreatePost) => request.post<Post>('/post', data),
+    createPostAttachment: async (id: string, file: File) => {
+        const formData = new FormData();
+        formData.append('attachment', file);
+        return request.post<PostAttachment>(`/post/${id}/attachment`, formData);
+    },
 
     activateAccount: (token: string) => request.get(`/auth/activate/${token}`)
 };
