@@ -1,21 +1,18 @@
 import { MenuItem } from '@mui/material';
 import Link from '@mui/material/Link';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import { useLogout } from '../Api/EndPoints/useLogout';
 import { ROUTES } from '../routes/Routes';
 
 const NAV_ITEMS = [
     {
         label: 'Home',
-        to: ROUTES.HOME
+        to: ROUTES.FEED
     },
     {
         label: 'Profile',
         to: `${ROUTES.PROFILE}/username`
-    },
-    {
-        label: 'Feed',
-        to: ROUTES.FEED
     },
     {
         label: 'Chat',
@@ -32,6 +29,13 @@ const NAV_ITEMS = [
 ];
 
 export const Navigation = () => {
+    const navigate = useNavigate();
+    const logout = useLogout();
+
+    const handleLogoutClick = () => {
+        logout.mutateAsync().then(() => navigate(ROUTES.HOME));
+    };
+
     return (
         <>
             {NAV_ITEMS.map((navItem, idx) => (
@@ -47,6 +51,17 @@ export const Navigation = () => {
                     </Link>
                 </MenuItem>
             ))}
+            <MenuItem>
+                <Link
+                    underline='hover'
+                    variant='body1'
+                    color={'#000'}
+                    component='button'
+                    onClick={handleLogoutClick}
+                >
+                    Logout
+                </Link>
+            </MenuItem>
         </>
     );
 };
