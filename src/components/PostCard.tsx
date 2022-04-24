@@ -38,7 +38,10 @@ export const PostCard = ({
     const downvoted = votes.data.me?.type === PostVoteType.DOWNVOTE;
 
     return (
-        <Card style={{ margin: '20px' }} onClick={() => setFull((a) => !a)}>
+        <Card
+            sx={{ margin: '20px', width: '100%' }}
+            onClick={() => setFull((a) => !a)}
+        >
             <CardHeader
                 avatar={
                     <>
@@ -49,6 +52,9 @@ export const PostCard = ({
                                     upvoted ? 'NONE' : PostVoteType.UPVOTE
                                 )
                             }
+                            sx={{
+                                cursor: 'pointer'
+                            }}
                         />
                         {votes.data.upvotes - votes.data.downvotes}
                         <ArrowDownward
@@ -58,6 +64,9 @@ export const PostCard = ({
                                     downvoted ? 'NONE' : PostVoteType.DOWNVOTE
                                 )
                             }
+                            sx={{
+                                cursor: 'pointer'
+                            }}
                         />
                     </>
                 }
