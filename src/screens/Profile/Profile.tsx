@@ -2,9 +2,16 @@ import { Box, Typography } from '@mui/material';
 import { Navigate, useParams } from 'react-router-dom';
 
 import { useUserByUsername } from '../../Api/EndPoints/useUserByUsername';
+import DEFAULT_AVATAR from '../../assets/defaultImage.jpg';
 import { UserProfileDescription } from '../../components';
 import { ROUTES } from '../../routes/Routes';
 import { CDN } from '../../utils/CDN';
+
+const isAvatarValid = (avatarUrl: string | undefined | null) => {
+    return (
+        avatarUrl !== null && avatarUrl !== undefined && avatarUrl.trim() !== ''
+    );
+};
 
 export const Profile = () => {
     const { username } = useParams();
@@ -14,12 +21,16 @@ export const Profile = () => {
 
     if (!user.data) return <Navigate to={ROUTES.NOT_FOUND} replace />;
 
+    const avatarSrc = isAvatarValid(user.data.avatar)
+        ? CDN(user.data.avatar as string)
+        : DEFAULT_AVATAR;
+
     return (
         <>
             <Box
                 component='img'
                 alt='Profile Picture'
-                src={CDN(user.data.avatar || '')}
+                src={avatarSrc}
                 width='100%'
                 height='60vh'
                 sx={{
