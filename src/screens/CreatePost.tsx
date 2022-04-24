@@ -59,7 +59,6 @@ export const CreatePost = () => {
                         createPost
                             .mutateAsync({ ...data, categories: [] })
                             .then((post) => {
-                                console.log(data);
                                 Promise.all(
                                     Array.from(data.files).map(
                                         async (file) =>
