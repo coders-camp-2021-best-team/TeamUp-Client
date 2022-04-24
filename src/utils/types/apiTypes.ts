@@ -20,7 +20,7 @@ export type User = {
     role: UserAccountRole;
     account_status: UserAccountStatus;
     activity_status: UserActivityStatus;
-    avatar?: string | null;
+    avatar: string | null;
 
     skills?: UserSkill[];
 };
