@@ -20,7 +20,7 @@ export type User = {
     role: UserAccountRole;
     account_status: UserAccountStatus;
     activity_status: UserActivityStatus;
-    avatar?: string | null;
+    avatar: string | null;
 
     skills?: UserSkill[];
 };
@@ -135,4 +135,10 @@ export type RequestPasswordReset = {
 export type ResetPassword = {
     password: string;
     confirm_password: string;
+};
+
+export type CreatePost = {
+    title: string;
+    body: string;
+    categories: string[];
 };

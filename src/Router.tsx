@@ -7,6 +7,7 @@ import {
     ActivateAccount,
     BaseScreen,
     Chat,
+    CreatePost,
     Feed,
     Home,
     Login,
@@ -24,7 +25,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<BaseScreen />}>
+                <Route>
                     <Route path={ROUTES.HOME} element={<Home />} />
                 </Route>
 
@@ -69,6 +70,8 @@ export const Router = () => {
                     <Route path={ROUTES.FEED} element={<Feed />} />
 
                     <Route path={ROUTES.POSTS} element={<Posts />} />
+
+                    <Route path={ROUTES.CREATE_POST} element={<CreatePost />} />
 
                     <Route
                         path={`${ROUTES.PROFILE}/:username`}
