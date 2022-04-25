@@ -136,3 +136,14 @@ export type ResetPassword = {
     password: string;
     confirm_password: string;
 };
+
+export type UpdateUserDto = {
+    current_password: string;
+    email?: string;
+    birthdate?: string;
+    username?: string;
+    first_name?: string;
+    last_name?: string;
+    biogram?: string;
+    new_password?: string;
+};
