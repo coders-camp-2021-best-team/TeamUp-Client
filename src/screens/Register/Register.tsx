@@ -86,9 +86,14 @@ export const Register = () => {
                 </Typography>
 
                 <form
-                    onSubmit={handleSubmit((data) =>
-                        registerHook
-                            .mutateAsync(data)
+                    onSubmit={handleSubmit((data) => {
+                        const birthdate = new Date(data.birthdate);
+                        birthdate.setDate(birthdate.getDate() + 1);
+                        return registerHook
+                            .mutateAsync({
+                                ...data,
+                                birthdate: birthdate.toISOString()
+                            })
                             .then(() => {
                                 navigate(ROUTES.LOGIN);
                                 toastNotify(
@@ -103,8 +108,8 @@ export const Register = () => {
                                             'Account with that email or username already exists.'
                                     });
                                 else toastNotify();
-                            })
-                    )}
+                            });
+                    })}
                 >
                     <Box
                         sx={{
