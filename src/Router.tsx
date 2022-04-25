@@ -8,6 +8,7 @@ import {
     BaseScreen,
     Chat,
     CreatePost,
+    EditProfile,
     Feed,
     Home,
     Login,
@@ -73,6 +74,11 @@ export const Router = () => {
                     <Route
                         path={`${ROUTES.PROFILE}/:username`}
                         element={<Profile />}
+                    />
+
+                    <Route
+                        path={`${ROUTES.EDIT_PROFILE}`}
+                        element={<EditProfile />}
                     />
 
                     <Route path={ROUTES.SEARCH} element={<Search />} />
