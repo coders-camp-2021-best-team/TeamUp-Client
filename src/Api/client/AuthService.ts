@@ -54,5 +54,7 @@ export const AuthService = {
         return request.post<PostAttachment>(`/post/${id}/attachment`, formData);
     },
 
-    activateAccount: (token: string) => request.get(`/auth/activate/${token}`)
+    activateAccount: (token: string) => request.get(`/auth/activate/${token}`),
+
+    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt')
 };
