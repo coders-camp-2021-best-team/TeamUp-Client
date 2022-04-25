@@ -16,7 +16,7 @@ export const ROUTES = {
     POSTS: '/posts',
     CREATE_POST: '/create-post',
     PROFILE: '/profile',
-    EDITPROFILE: '/editprofile',
+    EDIT_PROFILE: '/edit-profile',
     SEARCH: '/search',
 
     // ERROR ROUTES
