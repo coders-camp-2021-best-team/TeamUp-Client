@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 import { Navigate, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+import { useUser } from '../../Api/EndPoints/useUser';
 import { useUserByUsername } from '../../Api/EndPoints/useUserByUsername';
 import { UserProfileDescription } from '../../components';
 import { ROUTES } from '../../routes/Routes';
@@ -10,7 +13,11 @@ export const Profile = () => {
     const { username } = useParams();
     const user = useUserByUsername(username || '');
 
-    if (user.isLoading) return null;
+    const { data: currentUser, isLoading: loadingCurrentUser } = useUser();
+
+    const showEditButton = currentUser?.id === user.data?.id;
+
+    if (user.isLoading || loadingCurrentUser) return null;
 
     if (!user.data) return <Navigate to={ROUTES.NOT_FOUND} replace />;
 
@@ -37,6 +44,20 @@ export const Profile = () => {
                 {user.data.birthdate}
             </Typography>
             <UserProfileDescription user={user.data} />
+            {showEditButton && (
+                <NavLink
+                    to={ROUTES.EDIT_PROFILE}
+                    style={{
+                        textDecoration: 'none',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Button variant='contained' size='small'>
+                        EDIT PROFILE
+                    </Button>
+                </NavLink>
+            )}
         </>
     );
 };
