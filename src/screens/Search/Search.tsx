@@ -1,72 +1,31 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField } from '@mui/material';
-import { Box } from '@mui/system';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import axios from 'axios';
-import temp from 'lodash';
+import {
+    Box,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField
+} from '@mui/material';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const fetchSth = (searchPhrase: string) =>
-    axios.get(`https://rickandmortyapi.com/api/episode/${searchPhrase}`);
+import { useSearch } from '../../Api/EndPoints/useSearch';
+import useDebounce from '../../hooks/useDebounce';
+import { ROUTES } from '../../routes/Routes';
+import { AVATAR } from '../../utils/avatar';
 
 export const Search = () => {
-    const handleOnChange = temp.debounce(
-        (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            const val = e.target.value;
-            fetchSth(val).then((resp) => console.log(resp.data));
-        },
-        3000
-    );
+    const [rawQuery, setRawQuery] = useState<string>();
+    const query = useDebounce(rawQuery, 500);
 
-    const columns: GridColDef[] = [
-        { field: 'avatar', headerName: 'Avatar', width: 60 },
-        { field: 'name', headerName: 'First and last name', width: 150 },
-        { field: 'username', headerName: 'Username', width: 150 }
-    ];
+    const search = useSearch(query);
+    const navigate = useNavigate();
 
-    const rows = [
-        {
-            id: 1,
-            avatar: 'img',
-            name: 'Jon Snow',
-            username: 'Johny'
-        },
-        {
-            id: 2,
-            avatar: 'img',
-            name: 'Dawid Kowalski',
-            username: 'Mały Jaś'
-        },
-        {
-            id: 3,
-            avatar: 'img',
-            name: 'Tom Nowak',
-            username: 'Ktoś bez coś'
-        },
-        {
-            id: 4,
-            avatar: 'img',
-            name: 'Mariusz Wiśniewski',
-            username: 'Awwwwwxd'
-        },
-        {
-            id: 5,
-            avatar: 'img',
-            name: 'Mariusz Wiśniewski',
-            username: 'Awwwwwxd'
-        },
-        {
-            id: 6,
-            avatar: 'img',
-            name: 'Mariusz Wiśniewski',
-            username: 'Awwwwwxd'
-        },
-        {
-            id: 7,
-            avatar: 'img',
-            name: 'Mariusz Wiśniewski',
-            username: 'Awwwwwxd'
-        }
-    ];
+    if (search.isLoading || !search.data) return null;
 
     return (
         <>
@@ -87,7 +46,7 @@ export const Search = () => {
             >
                 <TextField
                     fullWidth
-                    onChange={handleOnChange}
+                    onChange={(e) => setRawQuery(e.target.value)}
                     label='Search'
                     id='Search'
                     sx={{ backgroundColor: '#B2A7FC' }}
@@ -96,18 +55,48 @@ export const Search = () => {
                     }}
                 />
             </Box>
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    sx={{
-                        backgroundColor: '#B2A7FC',
-                        margin: '0 10px'
-                    }}
-                />
-            </div>
+
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Avatar</TableCell>
+                            <TableCell>Username</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Birthdate</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {search.data.map((user) => (
+                            <TableRow
+                                key={user.id}
+                                onClick={() =>
+                                    navigate(
+                                        `${ROUTES.PROFILE}/${user.username}`
+                                    )
+                                }
+                            >
+                                <TableCell>
+                                    <Box
+                                        component='img'
+                                        src={AVATAR(user.avatar)}
+                                        width='90px'
+                                    />
+                                </TableCell>
+                                <TableCell>{user.username}</TableCell>
+                                <TableCell>
+                                    {user.first_name} {user.last_name}
+                                </TableCell>
+                                <TableCell>
+                                    {new Date(
+                                        user.birthdate
+                                    ).toLocaleDateString()}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
     );
 };
