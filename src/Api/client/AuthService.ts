@@ -56,5 +56,7 @@ export const AuthService = {
 
     activateAccount: (token: string) => request.get(`/auth/activate/${token}`),
 
-    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt')
+    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt'),
+
+    search: (params: QueryPostDto) => request.get<User[]>('/search', { params })
 };
