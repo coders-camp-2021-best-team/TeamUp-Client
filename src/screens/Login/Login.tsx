@@ -130,10 +130,13 @@ export const Login = () => {
                         marginTop: '2rem'
                     }}
                 >
-                    <NavLink to={ROUTES.REQUEST_PASSWORD_RESET}>
+                    <NavLink
+                        to={ROUTES.REQUEST_PASSWORD_RESET}
+                        style={{ color: 'white' }}
+                    >
                         Forgot password?
                     </NavLink>
-                    <NavLink to={ROUTES.REGISTER}>
+                    <NavLink to={ROUTES.REGISTER} style={{ color: 'white' }}>
                         Don't have an account? Sign up
                     </NavLink>
                 </Box>

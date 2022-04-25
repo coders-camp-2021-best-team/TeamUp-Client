@@ -26,10 +26,6 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route>
-                    <Route path={ROUTES.HOME} element={<Home />} />
-                </Route>
-
                 <Route
                     element={
                         <LoggedOutRoute>
@@ -37,6 +33,7 @@ export const Router = () => {
                         </LoggedOutRoute>
                     }
                 >
+                    <Route path={ROUTES.HOME} element={<Home />} />
                     <Route path={ROUTES.LOGIN} element={<Login />} />
 
                     <Route path={ROUTES.REGISTER} element={<Register />} />
