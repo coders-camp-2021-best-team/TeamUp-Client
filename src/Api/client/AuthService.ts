@@ -60,5 +60,7 @@ export const AuthService = {
         return request.post<PostAttachment>(`/post/${id}/attachment`, formData);
     },
 
-    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt')
+    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt'),
+
+    search: (params: QueryPostDto) => request.get<User[]>('/search', { params })
 };
