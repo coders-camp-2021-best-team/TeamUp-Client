@@ -12,7 +12,7 @@ export const LoggedOutRoute = ({ children }: Props) => {
     if (user.isLoading) return null;
 
     if (user.data) {
-        return <Navigate to={ROUTES.HOME} replace />;
+        return <Navigate to={ROUTES.FEED} replace />;
     }
 
     return children;
