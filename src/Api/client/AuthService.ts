@@ -61,5 +61,8 @@ export const AuthService = {
 
     chatRooms: () => request.get<ChatRoom[]>('/chat/rooms'),
 
-    search: (params: QueryPostDto) => request.get<User[]>('/search', { params })
+    search: (params: QueryPostDto) =>
+        request.get<User[]>('/search', { params }),
+
+    match: () => request.get<User>('/match')
 };
