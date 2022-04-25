@@ -2196,37 +2196,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.6.0":
-  version: 5.6.1
-  resolution: "@mui/utils@npm:5.6.1"
-  dependencies:
-    "@babel/runtime": ^7.17.2
-    "@types/prop-types": ^15.7.4
-    "@types/react-is": ^16.7.1 || ^17.0.0
-    prop-types: ^15.7.2
-    react-is: ^17.0.2
-  peerDependencies:
-    react: ^17.0.0 || ^18.0.0
-  checksum: b05c57263e63d4f518ee416760114cfecfe3bdf23491cf277a69fedc47d00db52e799d90a384854a81d936bbaa7ea9907e4978ebd1c181305c5c2d19818d0b7c
-  languageName: node
-  linkType: hard
-
-"@mui/x-data-grid@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "@mui/x-data-grid@npm:5.9.0"
-  dependencies:
-    "@mui/utils": ^5.6.0
-    clsx: ^1.1.1
-    prop-types: ^15.8.1
-    reselect: ^4.1.5
-  peerDependencies:
-    "@mui/material": ^5.2.8
-    "@mui/system": ^5.2.8
-    react: ^17.0.2 || ^18.0.0
-  checksum: 1bb414eef3b3aa89908656b0ca492aeaae805fdf713ab7dff74df57418c57dedcb281e384fcfc6ed5c0ea07c2e1dc60ef6ab0be12dd262a703ef0c6c5d9e44da
-  languageName: node
-  linkType: hard
-
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -11034,13 +11003,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reselect@npm:^4.1.5":
-  version: 4.1.5
-  resolution: "reselect@npm:4.1.5"
-  checksum: 54c13c1e795b2ea70cba8384138aebe78adda00cbea303cc94b64da0a70d74c896cc9a03115ae38b8bff990e7a60dcd6452ab68cbec01b0b38c1afda70714cf0
-  languageName: node
-  linkType: hard
-
 "resolve-cwd@npm:^3.0.0":
   version: 3.0.0
   resolution: "resolve-cwd@npm:3.0.0"
@@ -12189,7 +12151,6 @@ __metadata:
     "@hookform/resolvers": ^2.8.8
     "@mui/icons-material": ^5.5.1
     "@mui/material": ^5.5.2
-    "@mui/x-data-grid": ^5.9.0
     "@testing-library/jest-dom": ^5.14.1
     "@testing-library/react": ^12.0.0
     "@testing-library/user-event": ^13.2.1
