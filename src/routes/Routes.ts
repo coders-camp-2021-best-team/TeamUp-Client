@@ -14,6 +14,7 @@ export const ROUTES = {
     CHAT: '/chat',
     FEED: '/feed',
     POSTS: '/posts',
+    CREATE_POST: '/create-post',
     PROFILE: '/profile',
     EDITPROFILE: '/editprofile',
     SEARCH: '/search',

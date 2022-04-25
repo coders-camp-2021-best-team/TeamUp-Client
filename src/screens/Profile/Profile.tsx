@@ -7,7 +7,7 @@ import { useUser } from '../../Api/EndPoints/useUser';
 import { useUserByUsername } from '../../Api/EndPoints/useUserByUsername';
 import { UserProfileDescription } from '../../components';
 import { ROUTES } from '../../routes/Routes';
-import { CDN } from '../../utils/CDN';
+import { AVATAR } from '../../utils/avatar';
 
 export const Profile = () => {
     const { username } = useParams();
@@ -26,7 +26,7 @@ export const Profile = () => {
             <Box
                 component='img'
                 alt='Profile Picture'
-                src={CDN(user.data.avatar || '')}
+                src={AVATAR(user.data.avatar)}
                 width='100%'
                 height='60vh'
                 sx={{

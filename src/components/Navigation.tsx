@@ -2,36 +2,39 @@ import { MenuItem } from '@mui/material';
 import Link from '@mui/material/Link';
 import { NavLink } from 'react-router-dom';
 
+import { useUser } from '../Api/EndPoints/useUser';
 import { ROUTES } from '../routes/Routes';
 
-const NAV_ITEMS = [
-    {
-        label: 'Home',
-        to: ROUTES.HOME
-    },
-    {
-        label: 'Profile',
-        to: `${ROUTES.PROFILE}/username`
-    },
-    {
-        label: 'Feed',
-        to: ROUTES.FEED
-    },
-    {
-        label: 'Chat',
-        to: `${ROUTES.CHAT}/id`
-    },
-    {
-        label: 'Posts',
-        to: ROUTES.POSTS
-    },
-    {
-        label: 'Search',
-        to: ROUTES.SEARCH
-    }
-];
-
 export const Navigation = () => {
+    const { data: user } = useUser();
+
+    const NAV_ITEMS = [
+        {
+            label: 'Home',
+            to: ROUTES.FEED
+        },
+        {
+            label: 'Profile',
+            to: `${ROUTES.PROFILE}/${user?.username}`
+        },
+        {
+            label: 'Chats',
+            to: ROUTES.CHAT
+        },
+        {
+            label: 'Posts',
+            to: ROUTES.POSTS
+        },
+        {
+            label: 'Search',
+            to: ROUTES.SEARCH
+        },
+        {
+            label: 'Logout',
+            to: ROUTES.LOGOUT
+        }
+    ];
+
     return (
         <>
             {NAV_ITEMS.map((navItem, idx) => (

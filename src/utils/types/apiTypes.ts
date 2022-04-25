@@ -20,7 +20,7 @@ export type User = {
     role: UserAccountRole;
     account_status: UserAccountStatus;
     activity_status: UserActivityStatus;
-    avatar?: string;
+    avatar: string | null;
 
     skills?: UserSkill[];
 };
@@ -146,4 +146,10 @@ export type UpdateUserDto = {
     last_name?: string;
     biogram?: string;
     new_password?: string;
+};
+
+export type CreatePost = {
+    title: string;
+    body: string;
+    categories: string[];
 };

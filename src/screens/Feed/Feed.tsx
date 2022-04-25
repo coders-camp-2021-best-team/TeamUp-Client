@@ -8,7 +8,7 @@ import { useFeed } from '../../Api/EndPoints/useFeed';
 import { useSwipe } from '../../Api/EndPoints/useSwipe';
 import { ROUTES } from '../../routes/Routes';
 import { getAge } from '../../utils';
-import { CDN } from '../../utils/CDN';
+import { AVATAR } from '../../utils/avatar';
 import { UserSwipeType } from '../../utils/types/apiTypes';
 import { style } from './Feed.style';
 
@@ -26,7 +26,7 @@ export const Feed = () => {
                 <Box
                     component='img'
                     alt='Profile Picture'
-                    src={CDN(feed.data.recommendedUser.avatar || '')}
+                    src={AVATAR(feed.data.recommendedUser.avatar)}
                     width='100%'
                     maxWidth='425px'
                     height='450px'

@@ -20,7 +20,14 @@ export const Posts = () => {
     if (posts.isLoading || !posts.data) return null;
 
     return (
-        <Box>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '440px'
+            }}
+        >
             {posts.data.map((post) => (
                 <PostCard key={post.id} post={post} />
             ))}
