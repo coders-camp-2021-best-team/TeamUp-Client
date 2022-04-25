@@ -142,3 +142,9 @@ export type CreatePost = {
     body: string;
     categories: string[];
 };
+
+export type ChatRoom = {
+    id: string;
+    recipient1: User;
+    recipient2: User;
+};

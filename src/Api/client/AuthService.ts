@@ -1,5 +1,6 @@
 import { request } from '../../Axios/Axios';
 import {
+    ChatRoom,
     CreatePost,
     Feed,
     Login,
@@ -56,5 +57,7 @@ export const AuthService = {
 
     activateAccount: (token: string) => request.get(`/auth/activate/${token}`),
 
-    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt')
+    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt'),
+
+    chatRooms: () => request.get<ChatRoom[]>('/chat/rooms')
 };
