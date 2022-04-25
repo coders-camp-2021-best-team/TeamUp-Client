@@ -1,27 +1,18 @@
 import Lock from '@mui/icons-material/Lock';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Avatar, Box, Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { useLogin } from '../../Api/EndPoints/useLogin';
+import { useRequestPasswordReset } from '../../Api/EndPoints/useRequestPasswordReset';
 import { theme } from '../../config/theme';
 import { ROUTES } from '../../routes/Routes';
-import { Login as LoginDTO } from '../../utils/types/apiTypes';
+import { toastNotify } from '../../utils/ToastNotify';
+import { RequestPasswordReset as RequestPasswordResetDTO } from '../../utils/types/apiTypes';
 
-export const Login = () => {
+export const RequestPasswordReset = () => {
+    const { handleSubmit, register } = useForm<RequestPasswordResetDTO>();
+    const requestPasswordReset = useRequestPasswordReset();
     const navigate = useNavigate();
-    const loginFunc = useLogin();
-
-    const {
-        handleSubmit,
-        register,
-        setError,
-        formState: { errors }
-    } = useForm<LoginDTO>();
 
     return (
         <div
@@ -78,39 +69,30 @@ export const Login = () => {
                         }
                     }}
                 >
-                    Sign in
+                    Forgot Password?
                 </Typography>
 
                 <form
+                    style={{ width: '100%' }}
                     onSubmit={handleSubmit((data) =>
-                        loginFunc
-                            .mutateAsync(data)
-                            .then(() => navigate(ROUTES.FEED))
-                            .catch(() =>
-                                setError('password', {
-                                    message: 'Invalid username or password.'
-                                })
-                            )
+                        requestPasswordReset
+                            .mutateAsync(data.email)
+                            .then(() => {
+                                navigate(ROUTES.HOME);
+                                toastNotify(
+                                    200,
+                                    'Check your email and click the received link.'
+                                );
+                            })
                     )}
                 >
                     <TextField
-                        {...register('username')}
+                        {...register('email')}
                         variant='outlined'
                         required
-                        label='Username'
-                        autoComplete='username'
+                        label='Email'
+                        type='email'
                     />
-                    <TextField
-                        {...register('password')}
-                        variant='outlined'
-                        required
-                        label='Password'
-                        type='password'
-                        autoComplete='current-password'
-                    />
-                    <div className='invalid-feedback' style={{ color: 'red' }}>
-                        {errors.password?.message}
-                    </div>
                     <Button
                         variant='contained'
                         sx={{
@@ -118,28 +100,9 @@ export const Login = () => {
                         }}
                         type='submit'
                     >
-                        Sign In
+                        Send Email
                     </Button>
                 </form>
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        marginTop: '2rem'
-                    }}
-                >
-                    <NavLink
-                        to={ROUTES.REQUEST_PASSWORD_RESET}
-                        style={{ color: 'white' }}
-                    >
-                        Forgot password?
-                    </NavLink>
-                    <NavLink to={ROUTES.REGISTER} style={{ color: 'white' }}>
-                        Don't have an account? Sign up
-                    </NavLink>
-                </Box>
             </Box>
         </div>
     );

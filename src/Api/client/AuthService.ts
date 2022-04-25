@@ -1,5 +1,7 @@
 import { request } from '../../Axios/Axios';
 import {
+    CreatePost,
+    Feed,
     Login,
     Post,
     PostAttachment,
@@ -8,7 +10,10 @@ import {
     PostVoteType,
     QueryPostDto,
     Register,
-    User
+    ResetPassword,
+    User,
+    UserSwipe,
+    UserSwipeType
 } from '../../utils/types/apiTypes';
 
 export const AuthService = {
@@ -19,7 +24,14 @@ export const AuthService = {
     register: (register: Register) =>
         request.post<Register>('/auth/register', register),
 
-    user: (id: string) => request.get<User>(`/user/${id}`),
+    userByID: (id: string) => request.get<User>(`/user/${id}`),
+    userByUsername: (username: string) =>
+        request.get<User>(`/user/by-username/${username}`),
+
+    requestPasswordReset: (email: string) =>
+        request.post('/auth/request-password-reset', { email }),
+    passwordReset: (token: string, data: ResetPassword) =>
+        request.post(`/auth/password-reset/${token}`, data),
 
     posts: (params: QueryPostDto) => request.get<Post[]>('/post', { params }),
     postAttachments: (id: string) =>
@@ -27,5 +39,22 @@ export const AuthService = {
     postVotes: (id: string) => request.get<PostVotes>(`/post/${id}/vote`),
     postVote: (id: string, type: PostVoteType) =>
         request.post<PostVote>(`/post/${id}/vote`, { type }),
-    postRemoveVote: (id: string) => request.delete<PostVote>(`/post/${id}/vote`)
+    postRemoveVote: (id: string) =>
+        request.delete<PostVote>(`/post/${id}/vote`),
+
+    getFeed: () => request.get<Feed>('/feed'),
+
+    postSwipe: (id: string, status: UserSwipeType) =>
+        request.post<UserSwipe>(`/swipe/${id}`, { status }),
+
+    createPost: (data: CreatePost) => request.post<Post>('/post', data),
+    createPostAttachment: async (id: string, file: File) => {
+        const formData = new FormData();
+        formData.append('attachment', file);
+        return request.post<PostAttachment>(`/post/${id}/attachment`, formData);
+    },
+
+    activateAccount: (token: string) => request.get(`/auth/activate/${token}`),
+
+    getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt')
 };

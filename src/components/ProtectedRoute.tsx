@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { useUser } from '../Api/EndPoints/useUser';
+import { SocketContextProvider } from '../Api/SocketIO';
 import { ROUTES } from '../routes/Routes';
 
 type Props = {
@@ -16,5 +17,5 @@ export const ProtectedRoute = ({ children }: Props) => {
         return <Navigate to={ROUTES.LOGIN} replace />;
     }
 
-    return children;
+    return <SocketContextProvider>{children}</SocketContextProvider>;
 };

@@ -4,7 +4,7 @@ export type Login = {
 };
 
 export type Feed = {
-    recommendedUser: User;
+    recommendedUser: User | null;
 
     createdOn: string;
 };
@@ -20,9 +20,9 @@ export type User = {
     role: UserAccountRole;
     account_status: UserAccountStatus;
     activity_status: UserActivityStatus;
-    avatar?: string;
+    avatar: string | null;
 
-    skills: UserSkill[];
+    skills?: UserSkill[];
 };
 
 export enum UserAccountRole {
@@ -115,3 +115,30 @@ export enum PostVoteType {
     UPVOTE = 'UPVOTE',
     DOWNVOTE = 'DOWNVOTE'
 }
+
+export enum UserSwipeType {
+    LIKE = 'LIKE',
+    DISLIKE = 'DISLIKE'
+}
+
+export type UserSwipe = {
+    id: string;
+    target: User;
+    status: UserSwipeType;
+    updatedOn: string;
+};
+
+export type RequestPasswordReset = {
+    email: string;
+};
+
+export type ResetPassword = {
+    password: string;
+    confirm_password: string;
+};
+
+export type CreatePost = {
+    title: string;
+    body: string;
+    categories: string[];
+};

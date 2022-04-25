@@ -15,7 +15,8 @@ export const queryClient = new QueryClient({
                     return toastNotify(err.response?.status);
                 }
                 return toastNotify();
-            }
+            },
+            refetchOnWindowFocus: false
         }
     }
 });

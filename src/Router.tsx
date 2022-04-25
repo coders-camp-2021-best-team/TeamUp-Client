@@ -4,9 +4,10 @@ import { ProtectedRoute } from './components';
 import { LoggedOutRoute } from './components/LoggedOutRoute';
 import { ROUTES } from './routes/Routes';
 import {
+    ActivateAccount,
     BaseScreen,
     Chat,
-    EmailConfirmation,
+    CreatePost,
     Feed,
     Home,
     Login,
@@ -15,6 +16,7 @@ import {
     Posts,
     Profile,
     Register,
+    RequestPasswordReset,
     ResetPassword,
     Search
 } from './screens';
@@ -23,7 +25,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<BaseScreen />}>
+                <Route>
                     <Route path={ROUTES.HOME} element={<Home />} />
                 </Route>
 
@@ -39,13 +41,18 @@ export const Router = () => {
                     <Route path={ROUTES.REGISTER} element={<Register />} />
 
                     <Route
-                        path={ROUTES.RESET_PASSWORD}
+                        path={ROUTES.REQUEST_PASSWORD_RESET}
+                        element={<RequestPasswordReset />}
+                    />
+
+                    <Route
+                        path={`${ROUTES.RESET_PASSWORD}/:token`}
                         element={<ResetPassword />}
                     />
 
                     <Route
-                        path={ROUTES.CONFIRMATION_EMAIL}
-                        element={<EmailConfirmation />}
+                        path={`${ROUTES.ACTIVATE_ACCOUNT}/:token`}
+                        element={<ActivateAccount />}
                     />
                 </Route>
 
@@ -64,8 +71,10 @@ export const Router = () => {
 
                     <Route path={ROUTES.POSTS} element={<Posts />} />
 
+                    <Route path={ROUTES.CREATE_POST} element={<CreatePost />} />
+
                     <Route
-                        path={`${ROUTES.PROFILE}/:id`}
+                        path={`${ROUTES.PROFILE}/:username`}
                         element={<Profile />}
                     />
 

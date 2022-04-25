@@ -1,6 +1,7 @@
+export * from './ActivateAccount';
 export * from './Base';
 export * from './Chat';
-export * from './EmailConfirmation';
+export * from './CreatePost';
 export * from './Error';
 export * from './Feed';
 export * from './Home';
@@ -9,5 +10,6 @@ export * from './Logout';
 export * from './Posts';
 export * from './Profile';
 export * from './Register';
+export * from './RequestPasswordReset';
 export * from './ResetPassword';
 export * from './Search';
