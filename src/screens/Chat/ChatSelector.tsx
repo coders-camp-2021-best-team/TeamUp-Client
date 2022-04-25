@@ -1,19 +1,31 @@
+import {
+    Box,
+    Paper,
+    TableBody,
+    TableContainer,
+    Typography
+} from '@mui/material';
+
 import { useChatRooms } from '../../Api/EndPoints/useChatRooms';
+import { useMatch } from '../../Api/EndPoints/useMatch';
+import { ChatRoomEntry } from '../../components/ChatRoomEntry';
 
 export const ChatSelector = () => {
+    const match = useMatch();
     const rooms = useChatRooms();
 
-    if (rooms.isLoading || !rooms.data) return null;
+    if (rooms.isLoading || match.isLoading || !rooms.data) return null;
 
     return (
-        <div>
-            {rooms.data.map((room) => (
-                <div key={room.id}>
-                    <pre>
-                        <code>{JSON.stringify(room, null, 4)}</code>
-                    </pre>
-                </div>
-            ))}
-        </div>
+        <Box>
+            {match.data ? <Typography>New Match Found!</Typography> : null}
+            <TableContainer component={Paper}>
+                <TableBody>
+                    {rooms.data.map((room) => (
+                        <ChatRoomEntry key={room.id} chat={room} />
+                    ))}
+                </TableBody>
+            </TableContainer>
+        </Box>
     );
 };
