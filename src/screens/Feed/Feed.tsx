@@ -2,7 +2,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import PermIdentityRoundedIcon from '@mui/icons-material/PermIdentityRounded';
 import SportsEsportsRoundedIcon from '@mui/icons-material/SportsEsportsRounded';
 import { Box, Fab, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useFeed } from '../../Api/EndPoints/useFeed';
 import { useSwipe } from '../../Api/EndPoints/useSwipe';
@@ -17,8 +17,10 @@ export const Feed = () => {
     const feed = useFeed();
     const swipe = useSwipe();
 
-    if (feed.isLoading || !feed.data || feed.data.recommendedUser === null)
-        return null;
+    if (feed.isLoading || !feed.data) return null;
+
+    if (feed.data.recommendedUser === null)
+        return <Navigate to={ROUTES.CHAT} replace />;
 
     return (
         <>
