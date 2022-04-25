@@ -19,7 +19,7 @@ const NAV_ITEMS = [
     },
     {
         label: 'Chat',
-        to: `${ROUTES.CHAT}/id`
+        to: ROUTES.CHAT
     },
     {
         label: 'Posts',

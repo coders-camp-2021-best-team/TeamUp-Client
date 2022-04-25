@@ -7,6 +7,7 @@ import {
     ActivateAccount,
     BaseScreen,
     Chat,
+    ChatSelector,
     CreatePost,
     Feed,
     Home,
@@ -65,6 +66,7 @@ export const Router = () => {
                 >
                     <Route path={ROUTES.LOGOUT} element={<Logout />} />
 
+                    <Route path={ROUTES.CHAT} element={<ChatSelector />} />
                     <Route path={`${ROUTES.CHAT}/:id`} element={<Chat />} />
 
                     <Route path={ROUTES.FEED} element={<Feed />} />
