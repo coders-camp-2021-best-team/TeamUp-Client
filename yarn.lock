@@ -12167,6 +12167,7 @@ __metadata:
     http-status-codes: ^2.2.0
     husky: ^7.0.4
     lint-staged: ^12.3.7
+    lodash: ^4.17.21
     prettier: ^2.6.1
     react: ^17.0.2
     react-dom: ^17.0.2

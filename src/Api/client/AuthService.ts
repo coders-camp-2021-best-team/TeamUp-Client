@@ -59,5 +59,7 @@ export const AuthService = {
 
     getWebsocketJWT: () => request.get<string>('/auth/websocket-jwt'),
 
-    chatRooms: () => request.get<ChatRoom[]>('/chat/rooms')
+    chatRooms: () => request.get<ChatRoom[]>('/chat/rooms'),
+
+    search: (params: QueryPostDto) => request.get<User[]>('/search', { params })
 };
