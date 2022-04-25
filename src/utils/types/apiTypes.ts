@@ -147,4 +147,14 @@ export type ChatRoom = {
     id: string;
     recipient1: User;
     recipient2: User;
+
+    messages?: Message[];
+};
+
+export type Message = {
+    id: string;
+    createdOn: string;
+    chatroom: ChatRoom;
+    author: User;
+    content: string;
 };
