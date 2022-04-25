@@ -28,7 +28,7 @@ export const SocketContextProvider = ({
         setSocket(
             connect(process.env.REACT_APP_API_URL || '', {
                 auth: { token },
-                path: '/api/socket.io'
+                path: process.env.REACT_APP_SOCKET_IO_PATH
             })
         );
 
