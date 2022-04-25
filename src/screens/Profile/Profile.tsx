@@ -46,7 +46,7 @@ export const Profile = () => {
             <UserProfileDescription user={user.data} />
             {showEditButton && (
                 <NavLink
-                    to={ROUTES.EDITPROFILE}
+                    to={ROUTES.EDIT_PROFILE}
                     style={{
                         textDecoration: 'none',
                         display: 'flex',
