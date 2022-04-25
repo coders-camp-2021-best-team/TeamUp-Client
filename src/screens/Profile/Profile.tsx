@@ -7,6 +7,7 @@ import { useUser } from '../../Api/EndPoints/useUser';
 import { useUserByUsername } from '../../Api/EndPoints/useUserByUsername';
 import { UserProfileDescription } from '../../components';
 import { ROUTES } from '../../routes/Routes';
+import { getAge } from '../../utils';
 import { AVATAR } from '../../utils/avatar';
 
 export const Profile = () => {
@@ -41,7 +42,7 @@ export const Profile = () => {
                 color='white'
             >
                 {user.data.first_name} {user.data.last_name},{' '}
-                {user.data.birthdate}
+                {getAge(user.data.birthdate)}
             </Typography>
             <UserProfileDescription user={user.data} />
             {showEditButton && (
