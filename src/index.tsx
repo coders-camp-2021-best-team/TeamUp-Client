@@ -17,6 +17,14 @@ export const queryClient = new QueryClient({
                 return toastNotify();
             },
             refetchOnWindowFocus: false
+        },
+        mutations: {
+            onError: (err) => {
+                if (axios.isAxiosError(err)) {
+                    return toastNotify(err.response?.status);
+                }
+                return toastNotify();
+            }
         }
     }
 });

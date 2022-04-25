@@ -1,23 +1,28 @@
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
+// import { DataArraySharp } from '@mui/icons-material';
+// import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded';
 import SyncIcon from '@mui/icons-material/Sync';
-import { Box, Fab, Grid } from '@mui/material';
+import { Box, Fab } from '@mui/material';
 import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
+// import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
+import { useUpdateUser } from '../../Api/EndPoints/useUpdateUser';
+import { useUser } from '../../Api/EndPoints/useUser';
 import { ROUTES } from '../../routes/Routes';
+import { UpdateUserDto } from '../../utils/types/apiTypes';
 
 export const EditProfile = () => {
-    const content = [1, 2, 3];
-
-    const handleDelete = () => {
-        console.info('You clicked the delete icon.');
-    };
+    const { data: user } = useUser();
+    const updateUser = useUpdateUser(user?.id || '');
+    const { register, handleSubmit } = useForm<UpdateUserDto>({
+        defaultValues: user
+    });
 
     const [process, setProcess] = useState({
         icon: <SaveRoundedIcon />,
@@ -26,13 +31,27 @@ export const EditProfile = () => {
 
     const handleClick = () => {
         setProcess({ icon: <SyncIcon />, label: 'Loading' });
-        setTimeout(() => {
-            setProcess({ icon: <DoneRoundedIcon />, label: 'Saved!' });
-        }, 3000);
+
+        handleSubmit((data) =>
+            updateUser.mutate({
+                ...data,
+                new_password: data.new_password || undefined
+            })
+        )()
+            .then(() => {
+                setProcess({ icon: <DoneRoundedIcon />, label: 'Saved!' });
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    setProcess({ icon: <SaveRoundedIcon />, label: 'Save' });
+                }, 1000);
+            });
     };
 
+    if (!user) return null;
+
     return (
-        <>
+        <form>
             <Box
                 sx={{
                     display: 'flex',
@@ -40,8 +59,11 @@ export const EditProfile = () => {
                     margin: '10px 10px 0'
                 }}
             >
-                <NavLink to={ROUTES.PROFILE} style={{ textDecoration: 'none' }}>
-                    <Button variant='contained' size='small'>
+                <NavLink
+                    to={`${ROUTES.PROFILE}/${user.username}`}
+                    style={{ textDecoration: 'none' }}
+                >
+                    <Button variant='contained' size='small' type='submit'>
                         BACK
                     </Button>
                 </NavLink>
@@ -97,36 +119,47 @@ export const EditProfile = () => {
             </Box>
             <Box sx={{ margin: '20px 10px' }}>
                 <TextField
-                    id='firstname-basic'
-                    label='First name'
+                    label='Current Password'
+                    type='password'
                     variant='outlined'
-                    sx={{
-                        '& label.Mui-focused': { color: '#fff' },
-                        margin: '10px 0'
-                    }}
+                    required
+                    autoComplete='current_password'
+                    {...register('current_password', { required: true })}
                 />
                 <TextField
-                    id='lastname-basic'
-                    label='Last name'
+                    label='Email'
+                    type='email'
                     variant='outlined'
-                    sx={{
-                        '& label.Mui-focused': { color: '#fff' },
-                        margin: '10px 0'
-                    }}
+                    {...register('email')}
                 />
                 <TextField
-                    id='username-basic'
                     label='Username'
                     variant='outlined'
-                    sx={{
-                        '& label.Mui-focused': { color: '#fff' },
-                        margin: '10px 0'
-                    }}
+                    {...register('username')}
+                    autoComplete='username'
+                />
+                <TextField
+                    label='First Name'
+                    variant='outlined'
+                    {...register('first_name')}
+                />
+                <TextField
+                    label='Last Name'
+                    variant='outlined'
+                    {...register('last_name')}
+                />
+                <TextField
+                    label='New Password (leave blank to not change)'
+                    variant='outlined'
+                    {...register('new_password')}
+                    type='password'
+                    autoComplete='new-password'
                 />
                 <TextField
                     variant='outlined'
                     label='Birthdate'
                     type='date'
+                    {...register('birthdate')}
                     sx={{
                         label: {
                             display: 'none'
@@ -138,22 +171,23 @@ export const EditProfile = () => {
                     }}
                 />
                 <TextField
-                    id='biogram-basic'
                     label='Biogram'
                     multiline
                     rows={3}
+                    {...register('biogram')}
                     sx={{
                         '& label.Mui-focused': { color: '#fff' },
                         margin: '10px 0'
                     }}
                 />
-                <Grid container spacing={2} width='100%'>
+                {/* TODO: !!!!!!!!! EDIT SKILLS */}
+                {/* <Grid container spacing={2} width='100%'>
                     {content.map((box) => (
                         <Grid item key={box}>
                             <Chip
                                 label='Jakaś gra'
                                 variant='outlined'
-                                onDelete={handleDelete}
+                                // onDelete={handleDelete}
                                 sx={{
                                     backgroundColor: '#B2A7FC',
                                     color: '#000'
@@ -179,8 +213,8 @@ export const EditProfile = () => {
                             color: '#000'
                         }}
                     />
-                </Fab>
+                </Fab> */}
             </Box>
-        </>
+        </form>
     );
 };
